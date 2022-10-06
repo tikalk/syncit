@@ -3,13 +3,15 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
+    "prestart": "yarn env-check",
     "start": "nx run-many --target=serve --projects=web,be",
     "build": "nx build",
     "test": "nx test",
     "prepare": "husky install",
     "prisma:generate": "prisma generate --schema=./libs/models/src/prisma/prisma.schema",
     "prisma:migrate": "prisma migrate dev --schema=./libs/models/src/prisma/prisma.schema",
-    "prisma:push": "prisma db push --schema=./libs/models/src/prisma/prisma.schema"
+    "prisma:push": "prisma db push --schema=./libs/models/src/prisma/prisma.schema",
+    "env-check": "dotenv-checker -s .env.example -e .env"
   },
   "private": true,
   "dependencies": {
@@ -66,6 +68,7 @@
     "autoprefixer": "^10.4.12",
     "babel-jest": "28.1.1",
     "cypress": "^10.7.0",
+    "dotenv-checker": "^1.1.5",
     "eslint": "~8.15.0",
     "eslint-config-next": "12.3.1",
     "eslint-config-prettier": "8.1.0",
