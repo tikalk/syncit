@@ -122,5 +122,5 @@ export const callback = async (req: NextApiRequest, res: NextApiResponse) => {
       ? undefined
       : JSON.parse(req.query.state as string);
 
-  res.redirect(state?.returnTo ?? '/settings/calendars');
+  res.redirect(state?.returnTo ?? '/');
 };

@@ -7,7 +7,9 @@
     "build": "nx build",
     "test": "nx test",
     "prepare": "husky install",
-    "prisma": "prisma generate --schema=./libs/models/src/prisma/prisma.schema"
+    "prisma:generate": "prisma generate --schema=./libs/models/src/prisma/prisma.schema",
+    "prisma:migrate": "prisma migrate dev --schema=./libs/models/src/prisma/prisma.schema",
+    "prisma:push": "prisma db push --schema=./libs/models/src/prisma/prisma.schema"
   },
   "private": true,
   "dependencies": {
