@@ -14,7 +14,12 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@syncit2.0/core/components": ["libs/core/components/src/index.ts"],
+      "@syncit2.0/core/hooks": ["libs/core/hooks/src/index.ts"],
+      "@syncit2.0/core/store": ["libs/core/store/src/index.ts"],
+      "@syncit2.0/core/utils": ["libs/core/utils/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

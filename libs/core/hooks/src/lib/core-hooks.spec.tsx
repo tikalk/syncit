@@ -1,11 +1,10 @@
-import React from 'react';
 import { render } from '@testing-library/react';
 
-import Index from '../pages/index';
+import CoreHooks from './core-hooks';
 
-describe('Index', () => {
+describe('CoreHooks', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<Index />);
+    const { baseElement } = render(<CoreHooks />);
     expect(baseElement).toBeTruthy();
   });
 });
