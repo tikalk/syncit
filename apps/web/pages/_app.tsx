@@ -1,17 +1,16 @@
-import { AppProps } from 'next/app';
 import './styles.css';
+import type { AppProps } from 'next/app';
 import { RecoilRoot } from 'recoil';
-import { AuthGuard } from '@syncit2.0/core/components';
+import Layout from '../components/Layout';
 
-function CustomApp({ Component, pageProps }: AppProps) {
+function MyApp({ Component, pageProps }: AppProps) {
   return (
     <RecoilRoot>
-      <AuthGuard>
-        {/* eslint-disable-next-line react/jsx-props-no-spreading */}
+      <Layout>
         <Component {...pageProps} />
-      </AuthGuard>
+      </Layout>
     </RecoilRoot>
   );
 }
 
-export default CustomApp;
+export default MyApp;

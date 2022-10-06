@@ -69,7 +69,7 @@ export class CalendarsService {
     const list = await Promise.all(promises);
     const selectedCalendars = await prisma.selectedCalendar.findMany({
       where: {
-        userId: userData.id,
+        userId: userData?.id,
       },
     });
     const selectedCalendarsIds = selectedCalendars.map((cal) => cal.externalId);

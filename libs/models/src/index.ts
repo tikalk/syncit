@@ -1,1 +1,1 @@
-export * from './lib/models.module'
+export const nothing = {};

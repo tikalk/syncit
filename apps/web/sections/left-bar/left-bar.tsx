@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { CalendarIcon } from '@heroicons/react/solid';
+import { CalendarIcon } from '@heroicons/react/24/solid';
 import { useRecoilValue } from 'recoil';
 import { userDataState } from '@syncit2.0/core/store';
 import { User } from '@prisma/client';

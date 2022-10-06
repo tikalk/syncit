@@ -1,46 +1,57 @@
-datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
-}
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
   provider = "prisma-client-js"
 }
 
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
 model User {
-  id       Int      @id @default(autoincrement())
-  email    String   @unique
-  password String?
-  name     String?
-  bio      String?
-  avatar   String?
-  created  DateTime @default(now())
-  theme    String?  @default("light")
-  credentials Credential[]
-  selectedCalendars    SelectedCalendar[]
+  id                Int                @id @default(autoincrement())
+  email             String             @unique
+  password          String?
+  name              String?
+  bio               String?
+  avatar            String?
+  created           DateTime           @default(now())
+  theme             String?            @default("light")
+  credentials       Credential[]
+  selectedCalendars SelectedCalendar[]
+}
+
+model Session {
+  id       String   @id
+  userData String
+  expDate  DateTime
 }
 
 model Credential {
-  id     Int     @id @default(autoincrement())
-  type   String
-  account   String?
-  key    Json
-  user   User?   @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId Int?
-  appId  String?
+  id                Int                @id @default(autoincrement())
+  type              String
+  account           String?
+  key               Json
+  user              User?              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId            Int?
+  appId             String?
   selectedCalendars SelectedCalendar[]
+
   @@unique([userId, account])
 }
 
 model SelectedCalendar {
-  id     Int     @id @default(autoincrement())
-  user        User   @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId      Int
-  integration String
-  externalId  String
-  credential  Credential? @relation(fields: [credId], references: [id], onDelete: Cascade)
-  credId      Int?
+  id              Int         @id @default(autoincrement())
+  user            User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId          Int
+  integration     String
+  externalId      String
+  credential      Credential? @relation(fields: [credId], references: [id], onDelete: Cascade)
+  credId          Int?
   watchExpiration DateTime?
-  watchId String?
+  watchId         String?
+
   @@unique([userId, integration, externalId])
 }

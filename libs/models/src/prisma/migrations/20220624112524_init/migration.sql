@@ -13,6 +13,15 @@ CREATE TABLE "User" (
 );
 
 -- CreateTable
+CREATE TABLE "Session" (
+    "id" TEXT NOT NULL,
+    "userData" TEXT NOT NULL,
+    "expDate" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "Session_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "Credential" (
     "id" SERIAL NOT NULL,
     "type" TEXT NOT NULL,
