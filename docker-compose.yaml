@@ -1,0 +1,44 @@
+version: "3.6"
+services:
+  postgres:
+    image: postgres:13
+    ports:
+      - "5432:5432"
+    restart: always
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: "syncit"
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "postgres"
+      POSTGRES_HOST_AUTH_METHOD: trust
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: "redis:alpine"
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_persistence:/bitnami/redis/data
+
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    ports:
+      - 5672:5672
+      - 15672:15672
+    volumes:
+      - rabbitmq_data_persistence:/var/lib/rabbitmq/
+      - rabbitmq_log_persistence:/var/log/rabbitmq
+
+volumes:
+  db_data:
+  redis_persistence:
+  rabbitmq_data_persistence:
+  rabbitmq_log_persistence:
+

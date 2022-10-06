@@ -18,13 +18,18 @@
               }
             ]
           }
-        ]
+        ],
+        "react/require-default-props": 0,
+        "import/prefer-default-export": 0,
+        "max-lines": ["error", { "max": 200 }]
       }
     },
     {
       "files": ["*.ts", "*.tsx"],
       "extends": ["plugin:@nrwl/nx/typescript"],
-      "rules": {}
+      "rules": {
+        "import/prefer-default-export": 0
+      }
     },
     {
       "files": ["*.js", "*.jsx"],
