@@ -1,0 +1,46 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id       Int      @id @default(autoincrement())
+  email    String   @unique
+  password String?
+  name     String?
+  bio      String?
+  avatar   String?
+  created  DateTime @default(now())
+  theme    String?  @default("light")
+  credentials Credential[]
+  selectedCalendars    SelectedCalendar[]
+}
+
+model Credential {
+  id     Int     @id @default(autoincrement())
+  type   String
+  account   String?
+  key    Json
+  user   User?   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId Int?
+  appId  String?
+  selectedCalendars SelectedCalendar[]
+  @@unique([userId, account])
+}
+
+model SelectedCalendar {
+  id     Int     @id @default(autoincrement())
+  user        User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId      Int
+  integration String
+  externalId  String
+  credential  Credential? @relation(fields: [credId], references: [id], onDelete: Cascade)
+  credId      Int?
+  watchExpiration DateTime?
+  watchId String?
+  @@unique([userId, integration, externalId])
+}
