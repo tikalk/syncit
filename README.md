@@ -20,6 +20,7 @@
 
 ## Contribute
 Feel free to open us PR on anything you think can help this project. you also can check the issues [here](https://github.com/tikalk/syncit/issues) and try to fix them.
+Found some kind of problem [Let us know about it](https://github.com/tikalk/syncit/issues/new/choose)
 > TBD 
 
 # Happy coding...

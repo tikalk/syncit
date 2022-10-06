@@ -1,5 +1,5 @@
-blank_issues_enabled: false
+blank_issues_enabled: true
 contact_links:
   - name: Questions
-    url: https://syncit.com/slack
+    url: https://join.slack.com/share/enQtNDE4NDMyNjE4MDgzNS01OTBiOGUxNmI3MWMxOTI1MjdkYzYwNmY0MTk4NjJlN2NmNWQzMWUzZjhhZTA1ZjhhMmQ4NzhhMjhjYWY0OGE1
     about: Ask a general question about the project on our Slack workspace
