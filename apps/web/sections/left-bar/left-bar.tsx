@@ -11,7 +11,7 @@ export function LeftBar() {
       <div className="flex flex-col overflow-y-auto justify-between">
         <div>
           <h3 className="text-3xl font-bold mb-2">
-            <Link href="/">Cal Sync</Link>
+            <Link href="/">Syncit</Link>
           </h3>
           <ul className="menu pt-3">
             <li>
@@ -36,9 +36,13 @@ export function LeftBar() {
           </div>
           <div className="ml-2">
             {userData.name}
-            <p className="text-xs truncate text-ellipsis">
-              The user url will appear here
-            </p>
+            <Link href="/auth/logout">
+              <p className="text-xs truncate text-ellipsis">
+                {`${process.env.NEXT_PUBLIC_WEBAPP_URL}/${
+                  userData.email.split('@')[0]
+                }`}
+              </p>
+            </Link>
           </div>
         </div>
       </div>

@@ -11,6 +11,16 @@ const prisma = new PrismaClient();
 
 @Injectable()
 export class AuthService {
+  async logout(req, res) {
+    setCookie(res, 'sessionID', 0, {
+      maxAge: -1,
+      path: '/',
+      httpOnly: true,
+    });
+    res.setHeader('Access-Control-Allow-Credentials', 'true');
+    res.end(res.getHeader('Set-Cookie'));
+  }
+
   async login(req, res) {
     const { email, password } = req.body;
     const userEmail = email?.toLowerCase();
@@ -21,12 +31,10 @@ export class AuthService {
     }
 
     if (!password || password.trim().length < 7) {
-      res
-        .status(422)
-        .json({
-          message:
-            'Invalid input - password should be at least 7 characters long.',
-        });
+      res.status(422).json({
+        message:
+          'Invalid input - password should be at least 7 characters long.',
+      });
       return;
     }
 
@@ -68,12 +76,10 @@ export class AuthService {
     }
 
     if (!password || password.trim().length < 7) {
-      res
-        .status(422)
-        .json({
-          message:
-            'Invalid input - password should be at least 7 characters long.',
-        });
+      res.status(422).json({
+        message:
+          'Invalid input - password should be at least 7 characters long.',
+      });
       return;
     }
 
