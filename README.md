@@ -16,7 +16,8 @@
 5. Now that everything is setup run `yarn start`
 
 ## Licence  
-> TBD
+Distributed under the MIT License. See [LICENSE](https://raw.githubusercontent.com/tikalk/syncit/main/LICENSE.md) for more information.
+
 
 ## Contribute
 Feel free to open us PR on anything you think can help this project. you also can check the issues [here](https://github.com/tikalk/syncit/issues) and try to fix them.
