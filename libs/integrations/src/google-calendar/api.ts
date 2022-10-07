@@ -10,7 +10,8 @@ export type IntegrationOAuthCallbackState = {
 };
 
 export const WEBAPP_URL =
-  process.env.NEXT_PUBLIC_WEBAPP_URL || `https://${process.env.VERCEL_URL}`;
+  process.env['NEXT_PUBLIC_WEBAPP_URL'] ||
+  `https://${process.env['VERCEL_URL']}`;
 
 const scopes = [
   'https://www.googleapis.com/auth/calendar.readonly',
@@ -19,7 +20,7 @@ const scopes = [
 
 const prisma = new PrismaClient();
 const { client_id, client_secret } = JSON.parse(
-  process.env.GOOGLE_API_CREDENTIALS
+  process.env['GOOGLE_API_CREDENTIALS'] || ''
 ).web;
 
 export const add = async (req: NextApiRequest, res: NextApiResponse) => {
@@ -29,7 +30,9 @@ export const add = async (req: NextApiRequest, res: NextApiResponse) => {
       return res.status(400).json({ message: 'Google client_id missing.' });
     if (!client_secret)
       return res.status(400).json({ message: 'Google client_secret missing.' });
-    const userData = await getUserDataFromSessionId(req.cookies.sessionID);
+    const userData = await getUserDataFromSessionId(
+      req.cookies['sessionID'] || ''
+    );
     if (!userData?.id) {
       return res
         .status(401)
@@ -43,9 +46,9 @@ export const add = async (req: NextApiRequest, res: NextApiResponse) => {
     );
 
     const state: IntegrationOAuthCallbackState =
-      req.query.state !== 'string'
+      req.query['state'] !== 'string'
         ? undefined
-        : JSON.parse(req.query.state as string);
+        : JSON.parse(req.query['state'] as string);
 
     const authUrl = oAuth2Client.generateAuthUrl({
       access_type: 'offline',
@@ -64,7 +67,9 @@ export const callback = async (req: NextApiRequest, res: NextApiResponse) => {
     res.status(400).json({ message: '`code` must be a string' });
     return;
   }
-  const userData = await getUserDataFromSessionId(req.cookies.sessionID);
+  const userData = await getUserDataFromSessionId(
+    req.cookies['sessionID'] || ''
+  );
 
   if (!userData?.id) {
     return res
@@ -118,9 +123,9 @@ export const callback = async (req: NextApiRequest, res: NextApiResponse) => {
     },
   });
   const state: IntegrationOAuthCallbackState =
-    typeof req.query.state !== 'string'
+    typeof req.query['state'] !== 'string'
       ? undefined
-      : JSON.parse(req.query.state as string);
+      : JSON.parse(req.query['state'] as string);
 
   res.redirect(state?.returnTo ?? '/');
 };
