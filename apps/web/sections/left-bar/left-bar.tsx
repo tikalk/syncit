@@ -2,10 +2,9 @@ import Link from 'next/link';
 import { CalendarIcon } from '@heroicons/react/24/solid';
 import { useRecoilValue } from 'recoil';
 import { userDataState } from '@syncit2.0/core/store';
-import { User } from '@prisma/client';
 
 export function LeftBar() {
-  const userData: User = useRecoilValue(userDataState);
+  const userData: any = useRecoilValue(userDataState);
   return userData?.name ? (
     <div className="drawer-side w-60 shadow-lg  p-4 bg-base-100">
       <div className="flex flex-col overflow-y-auto justify-between">

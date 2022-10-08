@@ -3,7 +3,8 @@ import { v5 as uuidv5 } from 'uuid';
 import { CalendarEvent, Person } from '../../../../../types/google_calendar';
 
 export const WEBAPP_URL =
-  process.env.NEXT_PUBLIC_WEBAPP_URL || `https://${process.env.VERCEL_URL}`;
+  process.env['NEXT_PUBLIC_WEBAPP_URL'] ||
+  `https://${process.env['VERCEL_URL']}`;
 const translator = short();
 
 export const getWhat = (calEvent: CalendarEvent) => `
@@ -63,6 +64,7 @@ ${key}:
 ${calEvent.customInputs[key]}
   `;
       }
+      return '';
     })
     .join('');
 

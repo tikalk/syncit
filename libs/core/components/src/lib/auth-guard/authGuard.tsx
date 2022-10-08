@@ -38,10 +38,7 @@ export const AuthGuard = ({ children }: IAuthGuard) => {
 
   const getUserData = useCallback(async () => {
     if (!isAuthRoute) {
-      const { data } = await fetch({
-        method: 'GET',
-        url: '/api/auth/me',
-      });
+      const { data } = await http.get('/api/auth/me');
       setUserData(data?.userData);
       setLoading(false);
     }

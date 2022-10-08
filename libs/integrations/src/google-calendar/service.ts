@@ -281,7 +281,7 @@ export class GoogleCalendarService {
       calendarId: externalId,
       resource: {
         id: v4(),
-        address: `https://e24e-2a0d-6fc2-4760-5400-c057-fb9c-5bff-97bd.eu.ngrok.io/api/calendars/callback/${calId}`,
+        address: `${process.env['BE_PUBLIC_URL']}/api/calendars/callback/${calId}`,
         type: 'web_hook',
         params: {
           ttl: '30000',

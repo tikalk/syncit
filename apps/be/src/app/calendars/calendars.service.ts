@@ -1,4 +1,4 @@
-/* eslint-disable */
+/* eslint-disable max-lines */
 import { Injectable } from '@nestjs/common';
 import { google_calendar } from '@syncit2.0/integrations';
 import { PrismaClient } from '@prisma/client';
@@ -180,6 +180,7 @@ export class CalendarsService {
       description: event.id,
       attendees: null,
     };
+    console.warn({ calendars });
     calendars.forEach(async (selectedCal) => {
       const googleCalendarService = new GoogleCalendarService(
         selectedCal.credential
