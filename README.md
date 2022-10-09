@@ -1,6 +1,7 @@
 
 
-# Syncit 2.0
+# Syncit 2.0 - We make it easy to sync your calendars in real time.
+
 
 
 ![Syncit Logo](https://github.com/tikalk/syncit/blob/main/apps/web/public/cal-sync-logo.png?raw=true)
