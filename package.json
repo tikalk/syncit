@@ -11,7 +11,8 @@
     "prisma:generate": "prisma generate --schema=./libs/models/src/prisma/prisma.schema",
     "prisma:migrate": "prisma migrate dev --schema=./libs/models/src/prisma/prisma.schema",
     "prisma:push": "prisma db push --schema=./libs/models/src/prisma/prisma.schema",
-    "env-check": "dotenv-checker -s .env.example -e .env"
+    "env-check": "dotenv-checker -s .env.example -e .env",
+    "predev": "dotenv-checker --schema .env.schema --env .env.local"
   },
   "private": true,
   "dependencies": {
@@ -25,6 +26,7 @@
     "@prisma/client": "^4.4.0",
     "amqp-connection-manager": "^4.1.7",
     "amqplib": "^0.10.3",
+    "axios": "^1.1.2",
     "bcryptjs": "^2.4.3",
     "cookie": "^0.5.0",
     "cookie-parser": "^1.4.6",
