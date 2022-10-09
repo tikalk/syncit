@@ -41,7 +41,7 @@
     "react-hook-form": "^7.36.1",
     "recoil": "^0.7.5",
     "reflect-metadata": "^0.1.13",
-    "regenerator-runtime": "0.13.7",
+    "regenerator-runtime": "0.13.9",
     "rxjs": "^7.0.0",
     "short-uuid": "^4.2.0",
     "tslib": "^2.3.0",
