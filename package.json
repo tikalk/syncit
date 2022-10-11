@@ -7,7 +7,7 @@
     "start": "nx run-many --target=serve --projects=web,be",
     "lint": "nx run-many --all --target=lint --parallel",
     "build": "nx build",
-    "test": "nx test",
+    "test": "nx run-many --all --target=test  --codeCoverage --coverageReporters=json",
     "prepare": "husky install",
     "prisma:generate": "prisma generate --schema=./libs/models/src/prisma/prisma.schema",
     "prisma:migrate": "prisma migrate dev --schema=./libs/models/src/prisma/prisma.schema",

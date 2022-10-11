@@ -30,7 +30,7 @@ jobs:
         run: yarn
 
       - name: Unit Test
-        run: yarn test --codeCoverage --coverageReporters=json
+        run: yarn test
         continue-on-error: false
 
       - name: Merge coverage reports
