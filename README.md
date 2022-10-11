@@ -10,7 +10,7 @@
 
 <div align="center"><img src="https://github.com/tikalk/syncit/blob/main/apps/web/public/cal-sync-logo.png?raw=true"/></div>
 
-# This is an Open source project
+<div align="center"><h1>This is an Open source project!</h1></div>
 
 ## Installation
 
