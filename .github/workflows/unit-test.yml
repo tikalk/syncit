@@ -30,17 +30,17 @@ jobs:
         run: yarn
 
       - name: Unit Test
-        run: yarn test
+        run: yarn test --codeCoverage --coverageReporters=json
         continue-on-error: false
 
       - name: Merge coverage reports
-        run: jq -s '[.[]]|flatten' reports/coverage-results/*.json &> reports/coverage-results/coverage_report.json
+        run: jq -s '[.[]]|flatten' coverage/**/*.json &> coverage/coverage_report.json
 
       - name: Annotate Code Coverage Results
         uses: ataylorme/eslint-annotate-action@1.2.0
         with:
           repo-token: "${{ secrets.GITHUB_TOKEN }}"
-          report-json: "reports/coverage-results/coverage_report.json"
+          report-json: "coverage/coverage_report.json"
 
       - name: Upload Coverage report
         if: ${{ always() }}
