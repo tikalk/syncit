@@ -30,7 +30,7 @@ jobs:
         run: yarn
 
       - name: Unit Test
-        run: nx affected:test
+        run: npx nx affected:test
         continue-on-error: false
 
       - name: Merge coverage reports
