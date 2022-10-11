@@ -15,7 +15,7 @@ jobs:
         uses: releasehub-com/github-action-create-pr-parent-submodule@v1
         with:
           github_token: ${{ secrets.GH_ACCESS_TOKEN }}
-          parent_repository: "calcom/cal.com"
+          parent_repository: "tikalk/syncit"
           checkout_branch: "main"
           pr_against_branch: "main"
-          owner: "calcom"
+          owner: "tikalk"
