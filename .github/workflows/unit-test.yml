@@ -4,7 +4,7 @@ on:
     branches:
       - main
 jobs:
-  lint:
+  unit-test:
     strategy:
       matrix:
         node: ["14.x"]
@@ -30,7 +30,7 @@ jobs:
         run: yarn
 
       - name: Unit Test
-        run: npx nx affected:test
+        run: yarn test
         continue-on-error: false
 
       - name: Merge coverage reports
