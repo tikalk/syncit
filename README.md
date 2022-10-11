@@ -75,5 +75,3 @@ Found some kind of problem [Let us know about it](https://github.com/tikalk/sync
 
 
 # Happy coding...
----
-This project was generated using [Nx](https://nx.dev).
