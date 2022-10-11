@@ -248,7 +248,7 @@ export class GoogleCalendarService {
       },
       (err: GoogleCalError | null, event) => {
         if (err) {
-          /* 410 is when an event is already deleted on the Google cal before on cal.com
+          /* 410 is when an event is already deleted on the Google cal before on syncit
           404 is when the event is on a different calendar */
           if (err.code === 410 || err.code === 404) return true;
           console.error(
