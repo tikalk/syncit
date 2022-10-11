@@ -9,6 +9,8 @@
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
+        "outputFile": "reports/lint-results/core-components.json",
+        "format": "json",
         "lintFilePatterns": ["libs/core/components/**/*.{ts,tsx,js,jsx}"]
       }
     },

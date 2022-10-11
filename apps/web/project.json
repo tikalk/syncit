@@ -55,6 +55,8 @@
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
+        "outputFile": "reports/lint-results/web.json",
+        "format": "json",
         "lintFilePatterns": ["apps/web/**/*.{ts,tsx,js,jsx}"]
       }
     }

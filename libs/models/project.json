@@ -18,6 +18,8 @@
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
+        "outputFile": "reports/lint-results/models.json",
+        "format": "json",
         "lintFilePatterns": ["libs/models/**/*.ts"]
       }
     },

@@ -44,6 +44,8 @@
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
+        "outputFile": "reports/lint-results/be.json",
+        "format": "json",
         "lintFilePatterns": ["apps/be/**/*.ts"]
       }
     },
