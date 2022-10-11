@@ -4,8 +4,8 @@
 <a href="https://github.com/tikalk/syncit/stargazers"><img src="https://img.shields.io/github/stars/tikalk/syncit?style=plastic"/></a>
 <a href="https://github.com/tikalk/syncit/issues"><img src="https://img.shields.io/github/issues/tikalk/syncit?style=plastic"/></a>
 <a href="https://github.com/tikalk/syncit/blob/main/LICENSE.md"><img src="https://img.shields.io/github/license/tikalk/syncit?style=plastic"/></a>
-<a href="https://github.com/tikalk/syncit/pulse"><img src="https://img.shields.io/github/commit-activity/m/tikalk/syncit" alt="Commits-per-month"></a>
-<a href="https://github.com/tikalk/syncit/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22"><img src="https://img.shields.io/badge/Help%20Wanted-Contribute-blue"></a>
+<a href="https://github.com/tikalk/syncit/pulse"><img src="https://img.shields.io/github/commit-activity/m/tikalk/syncit?style=plastic" alt="Commits-per-month"></a>
+<a href="https://github.com/tikalk/syncit/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22"><img src="https://img.shields.io/badge/Help%20Wanted-Contribute-blue?style=plastic"></a>
 </p>
 
 <div align="center"><img src="https://github.com/tikalk/syncit/blob/main/apps/web/public/cal-sync-logo.png?raw=true"/></div>
