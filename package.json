@@ -5,6 +5,7 @@
   "scripts": {
     "prestart": "yarn env-check",
     "start": "nx run-many --target=serve --projects=web,be",
+    "lint": "nx run-many --all --target=lint --parallel",
     "build": "nx build",
     "test": "nx test",
     "prepare": "husky install",
