@@ -1,4 +1,4 @@
-name: Lint
+name: Unit-Test
 on:
   pull_request_target:
     branches:
@@ -29,22 +29,22 @@ jobs:
         if: steps.yarn-cache.outputs.cache-hit != 'true'
         run: yarn
 
-      - name: Lint
-        run: nx affected:lint
+      - name: Unit Test
+        run: nx affected:test
         continue-on-error: false
 
-      - name: Merge lint reports
-        run: jq -s '[.[]]|flatten' reports/lint-results/*.json &> reports/lint-results/eslint_report.json
+      - name: Merge coverage reports
+        run: jq -s '[.[]]|flatten' reports/coverage-results/*.json &> reports/coverage-results/coverage_report.json
 
-      - name: Annotate Code Linting Results
+      - name: Annotate Code Coverage Results
         uses: ataylorme/eslint-annotate-action@1.2.0
         with:
           repo-token: "${{ secrets.GITHUB_TOKEN }}"
-          report-json: "reports/lint-results/eslint_report.json"
+          report-json: "reports/coverage-results/coverage_report.json"
 
-      - name: Upload ESLint report
+      - name: Upload Coverage report
         if: ${{ always() }}
         uses: actions/upload-artifact@v2
         with:
-          name: lint-results
-          path: lint-results
+          name: coverage-results
+          path: coverage-results
