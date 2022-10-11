@@ -65,6 +65,15 @@ issues [here](https://github.com/tikalk/syncit/issues) and try to fix them.
 Found some kind of problem [Let us know about it](https://github.com/tikalk/syncit/issues/new/choose)
 > TBD
 
+## Built With
+- [Nx](https://nx.dev/)
+- [NestJS](https://nestjs.com/)
+- [Next.js](https://nextjs.org/)
+- [React](https://reactjs.org/)
+- [Tailwind](https://tailwindcss.com/)
+- [Prisma](https://prisma.io/)
+
+
 # Happy coding...
 ---
 This project was generated using [Nx](https://nx.dev).
