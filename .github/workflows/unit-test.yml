@@ -34,7 +34,7 @@ jobs:
         continue-on-error: false
 
       - name: Merge coverage reports
-        run: jq -s '[.[]]|flatten' coverage/**/*.json &> coverage/coverage_report.json
+        run: jq -s '[.[]]|flatten' coverage/**/coverage-final.json &> coverage/coverage-report.json
 
       - name: Annotate Code Coverage Results
         uses: ataylorme/eslint-annotate-action@1.2.0
