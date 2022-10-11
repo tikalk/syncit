@@ -4,7 +4,7 @@
 
 
 
-![Syncit Logo](https://github.com/tikalk/syncit/blob/main/apps/web/public/cal-sync-logo.png?raw=true)
+<div align="center"><img src="https://github.com/tikalk/syncit/blob/main/apps/web/public/cal-sync-logo.png?raw=true"/></div>
 
 # This is an Open source project
 
