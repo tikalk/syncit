@@ -30,11 +30,11 @@ jobs:
         run: yarn
 
       - name: Lint
-        run: yarn lint:report
+        run: yarn lint
         continue-on-error: true
 
       - name: Merge lint reports
-        run: jq -s '[.[]]|flatten' lint-results/*.json &> lint-results/eslint_report.json
+        run: jq -s '[.[]]|flatten' reports/lint-results/*.json &> reports/lint-results/eslint_report.json
 
       - name: Annotate Code Linting Results
         uses: ataylorme/eslint-annotate-action@1.2.0

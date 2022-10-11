@@ -9,6 +9,8 @@
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
+        "outputFile": "reports/lint-results/core-hooks.json",
+        "format": "json",
         "lintFilePatterns": ["libs/core/hooks/**/*.{ts,tsx,js,jsx}"]
       }
     },
