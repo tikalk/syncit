@@ -1,0 +1,57 @@
+replicaCount: 1
+
+image:
+  repository: 557680788250.dkr.ecr.eu-central-1.amazonaws.com/syncit
+  pullPolicy: IfNotPresent
+  tag: "latest"
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  create: true
+  annotations: {}
+  name: "tt-sa"
+
+podAnnotations: {}
+
+podSecurityContext: {}
+
+securityContext: {}
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: true
+  annotations: {}
+  hosts:
+    - host: syncit.tikalk.dev
+      paths: []
+  tls: []
+
+resources: {}
+
+env:
+ - name: "DATABASE_URL"
+   value: ""
+   name: "NEXT_PUBLIC_WEBAPP_URL"
+   value: ""
+   name: "SECRET"
+   value: ""
+   #todo: add missing envs
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 2
+  targetCPUUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
