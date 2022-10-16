@@ -1,5 +1,8 @@
 import { Controller, Get, Post, Req, Res } from '@nestjs/common';
 
+// Todo: add this for swagger better documentation
+// import { ApiCreatedResponse, ApiHeader, ApiOkResponse, ApiUnauthorizedResponse } from '@nestjs/swagger';
+
 import { AuthService } from './auth.service';
 
 @Controller('auth')
