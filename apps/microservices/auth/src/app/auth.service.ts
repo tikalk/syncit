@@ -5,9 +5,8 @@ import {
   setCookie,
   verifyPassword,
 } from '@syncit2.0/core/utils';
-import { PrismaClient } from '@prisma/client';
 
-const prisma = new PrismaClient();
+import { prisma } from '@syncit2.0/models';
 
 @Injectable()
 export class AuthService {
@@ -18,7 +17,7 @@ export class AuthService {
       httpOnly: true,
     });
     res.setHeader('Access-Control-Allow-Credentials', 'true');
-    res.end(res.getHeader('Set-Cookie'));
+    res.status(200).end(res.getHeader('Set-Cookie'));
   }
 
   async login(req, res) {
@@ -54,7 +53,7 @@ export class AuthService {
           httpOnly: true,
         });
         res.setHeader('Access-Control-Allow-Credentials', 'true');
-        res.end(res.getHeader('Set-Cookie'));
+        res.status(200).end(res.getHeader('Set-Cookie'));
         return;
       }
     }
@@ -126,13 +125,13 @@ export class AuthService {
       httpOnly: true,
     });
     res.setHeader('Access-Control-Allow-Credentials', 'true');
-    res.end(res.getHeader('Set-Cookie'));
+    res.status(201).end(res.getHeader('Set-Cookie'));
   }
 
   async me(req, res) {
     const { userData } = res.locals;
     if (userData?.id) {
-      res.json({ userData });
+      res.status(200).json({ userData });
       return;
     }
     res.status(401).send('unauthorized');

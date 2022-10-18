@@ -7,7 +7,7 @@ import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import * as cookieParser from 'cookie-parser';
 import { AppModule } from './app/app.module';
-import { AuthGuard } from './app/auth.guard';
+import { AuthGuard } from '@syncit2.0/core/nest-lib';
 import { Transport } from '@nestjs/microservices';
 
 async function bootstrap() {
