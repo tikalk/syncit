@@ -17,7 +17,6 @@
   },
   "private": true,
   "dependencies": {
-    "@golevelup/ts-jest": "^0.3.3",
     "@heroicons/react": "^2.0.12",
     "@hookform/resolvers": "^2.9.8",
     "@nestjs/common": "^9.0.0",
@@ -52,8 +51,9 @@
     "yup": "^0.32.11"
   },
   "devDependencies": {
+    "@golevelup/ts-jest": "^0.3.3",
     "@nestjs/schematics": "^9.0.0",
-    "@nestjs/testing": "^9.0.0",
+    "@nestjs/testing": "^9.1.4",
     "@nrwl/cli": "14.8.3",
     "@nrwl/cypress": "14.8.3",
     "@nrwl/eslint-plugin-nx": "14.8.3",
@@ -91,6 +91,7 @@
     "husky": "^8.0.1",
     "jest": "28.1.1",
     "jest-environment-jsdom": "29.1.2",
+    "jest-mock-extended": "^3.0.1",
     "lint-staged": "^13.0.3",
     "nx": "14.8.3",
     "postcss": "^8.4.17",

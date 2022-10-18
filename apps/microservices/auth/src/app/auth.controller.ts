@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Req, Res } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Req,
+  Res,
+  Request,
+  Response,
+} from '@nestjs/common';
 
 import { AuthService } from './auth.service';
 import {
@@ -42,7 +50,7 @@ export class AuthController {
     description: 'Login params',
     type: LoginInput,
   })
-  @ApiCreatedResponse({
+  @ApiOkResponse({
     description: 'User logged in successfully and cookie saved on initiator.',
   })
   @ApiUnprocessableEntityResponse({
