@@ -4,7 +4,7 @@ name: Auth Microservice
 file_version: 1.0.2
 app_version: 0.9.7-2
 file_blobs:
-  apps/microservices/auth/src/app/auth.controller.ts: 5d671599071f779fc89b51bf5c9de48fb2dfce51
+  apps/microservices/auth/src/app/auth.controller.ts: a2e813b8c2b4521f53cf1b67661a89a66c311a72
   apps/microservices/auth/src/app/auth.service.ts: 83c0a82897969e503c004c6153622feb8c2c3f55
 ---
 
@@ -16,13 +16,13 @@ available via `/api/auth`
 <!-- NOTE-swimm-snippet: the lines below link your snippet to Swimm -->
 ### 📄 apps/microservices/auth/src/app/auth.controller.ts
 ```typescript
-⬜ 5      
-⬜ 6      import { AuthService } from './auth.service';
-⬜ 7      
-🟩 8      @Controller('auth')
-⬜ 9      export class AuthController {
-⬜ 10       constructor(private readonly authService: AuthService) {}
-⬜ 11     
+⬜ 14     import { LoginInput, RegisterInput, UserData } from './auth.dto';
+⬜ 15     
+⬜ 16     @ApiTags('Auth')
+🟩 17     @Controller('auth')
+⬜ 18     export class AuthController {
+⬜ 19       constructor(private readonly authService: AuthService) {}
+⬜ 20     
 ```
 
 <br/>
@@ -39,16 +39,30 @@ available via `/api/auth`
 <!-- NOTE-swimm-snippet: the lines below link your snippet to Swimm -->
 ### 📄 apps/microservices/auth/src/app/auth.controller.ts
 ```typescript
-⬜ 9      export class AuthController {
-⬜ 10       constructor(private readonly authService: AuthService) {}
-⬜ 11     
-🟩 12       @Post('register')
-🟩 13       async register(@Req() request: Request, @Res() response: Response) {
-🟩 14         return this.authService.register(request, response);
-🟩 15       }
-⬜ 16     
-⬜ 17       @Post('login')
-⬜ 18       async login(@Req() request: Request, @Res() response: Response) {
+⬜ 18     export class AuthController {
+⬜ 19       constructor(private readonly authService: AuthService) {}
+⬜ 20     
+🟩 21       @Post('register')
+🟩 22       @ApiBody({
+🟩 23         description: 'Registration params',
+🟩 24         type: RegisterInput,
+🟩 25       })
+🟩 26       @ApiCreatedResponse({
+🟩 27         description: 'User registered successfully and cookie saved on initiator.',
+🟩 28         type: RegisterInput,
+🟩 29       })
+🟩 30       @ApiUnprocessableEntityResponse({
+🟩 31         description: 'Error with the data sent.',
+🟩 32       })
+🟩 33       @ApiConflictResponse({
+🟩 34         description: 'User (email) already exist.',
+🟩 35       })
+🟩 36       async register(@Req() request: Request, @Res() response: Response) {
+🟩 37         return this.authService.register(request, response);
+🟩 38       }
+⬜ 39     
+⬜ 40       @Post('login')
+⬜ 41       @ApiBody({
 ```
 
 <br/>
@@ -166,16 +180,29 @@ available via `/api/auth`
 <!-- NOTE-swimm-snippet: the lines below link your snippet to Swimm -->
 ### 📄 apps/microservices/auth/src/app/auth.controller.ts
 ```typescript
-⬜ 14         return this.authService.register(request, response);
-⬜ 15       }
-⬜ 16     
-🟩 17       @Post('login')
-🟩 18       async login(@Req() request: Request, @Res() response: Response) {
-🟩 19         return this.authService.login(request, response);
-🟩 20       }
-⬜ 21       @Post('logout')
-⬜ 22       async logout(@Req() request: Request, @Res() response: Response) {
-⬜ 23         return this.authService.logout(request, response);
+⬜ 37         return this.authService.register(request, response);
+⬜ 38       }
+⬜ 39     
+🟩 40       @Post('login')
+🟩 41       @ApiBody({
+🟩 42         description: 'Login params',
+🟩 43         type: LoginInput,
+🟩 44       })
+🟩 45       @ApiCreatedResponse({
+🟩 46         description: 'User logged in successfully and cookie saved on initiator.',
+🟩 47       })
+🟩 48       @ApiUnprocessableEntityResponse({
+🟩 49         description: 'Error with the data sent.',
+🟩 50       })
+🟩 51       @ApiUnauthorizedResponse({
+🟩 52         description: 'Error with the data sent. Unauthorized',
+🟩 53       })
+🟩 54       async login(@Req() request: Request, @Res() response: Response) {
+🟩 55         return this.authService.login(request, response);
+🟩 56       }
+⬜ 57     
+⬜ 58       @Post('logout')
+⬜ 59       @ApiOkResponse({
 ```
 
 <br/>
@@ -261,16 +288,20 @@ available via `/api/auth`
 <!-- NOTE-swimm-snippet: the lines below link your snippet to Swimm -->
 ### 📄 apps/microservices/auth/src/app/auth.controller.ts
 ```typescript
-⬜ 18       async login(@Req() request: Request, @Res() response: Response) {
-⬜ 19         return this.authService.login(request, response);
-⬜ 20       }
-🟩 21       @Post('logout')
-🟩 22       async logout(@Req() request: Request, @Res() response: Response) {
-🟩 23         return this.authService.logout(request, response);
-🟩 24       }
-⬜ 25     
-⬜ 26       @Get('me')
-⬜ 27       async me(@Req() request: Request, @Res() response: Response) {
+⬜ 55         return this.authService.login(request, response);
+⬜ 56       }
+⬜ 57     
+🟩 58       @Post('logout')
+🟩 59       @ApiOkResponse({
+🟩 60         description:
+🟩 61           'User successfully logged out and cookie removed from initiator.',
+🟩 62       })
+🟩 63       async logout(@Req() request: Request, @Res() response: Response) {
+🟩 64         return this.authService.logout(request, response);
+🟩 65       }
+⬜ 66     
+⬜ 67       @Get('me')
+⬜ 68       @ApiOkResponse({
 ```
 
 <br/>
@@ -310,14 +341,24 @@ available via `/api/auth`
 <!-- NOTE-swimm-snippet: the lines below link your snippet to Swimm -->
 ### 📄 apps/microservices/auth/src/app/auth.controller.ts
 ```typescript
-⬜ 23         return this.authService.logout(request, response);
-⬜ 24       }
-⬜ 25     
-🟩 26       @Get('me')
-🟩 27       async me(@Req() request: Request, @Res() response: Response) {
-🟩 28         return this.authService.me(request, response);
-🟩 29       }
-⬜ 30     }
+⬜ 64         return this.authService.logout(request, response);
+⬜ 65       }
+⬜ 66     
+🟩 67       @Get('me')
+🟩 68       @ApiOkResponse({
+🟩 69         description: 'Returns user data if logged in',
+🟩 70         type: UserData,
+🟩 71       })
+🟩 72       @ApiUnauthorizedResponse({
+🟩 73         description: 'Unauthorized',
+🟩 74       })
+🟩 75       @ApiForbiddenResponse({
+🟩 76         description: 'Unauthorized - Blocked by auth guard',
+🟩 77       })
+🟩 78       async me(@Req() request: Request, @Res() response: Response) {
+🟩 79         return this.authService.me(request, response);
+🟩 80       }
+⬜ 81     }
 ```
 
 <br/>
