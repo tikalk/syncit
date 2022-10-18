@@ -1773,6 +1773,29 @@
     webpack "^4 || ^5"
     webpack-node-externals "^3.0.0"
 
+"@nrwl/cypress@15.0.0":
+  version "15.0.0"
+  resolved "https://registry.yarnpkg.com/@nrwl/cypress/-/cypress-15.0.0.tgz#c7f19de7571977f48deac8a37572d5ff015aebdc"
+  integrity sha512-H9KJH4lqdoxQcVqJZhyhz1rYrXaUJW9Fu1yX2xOPBE+FQjQVQ5SAU8F72vNfYcBKOb6ZPu6rbtX6FULOZcPqjQ==
+  dependencies:
+    "@babel/core" "^7.0.1"
+    "@babel/preset-env" "^7.0.0"
+    "@cypress/webpack-preprocessor" "^5.12.0"
+    "@nrwl/devkit" "15.0.0"
+    "@nrwl/linter" "15.0.0"
+    "@nrwl/workspace" "15.0.0"
+    "@phenomnomnominal/tsquery" "4.1.1"
+    babel-loader "^8.0.2"
+    chalk "4.1.0"
+    dotenv "~10.0.0"
+    fork-ts-checker-webpack-plugin "7.2.13"
+    semver "7.3.4"
+    ts-loader "^9.3.1"
+    tsconfig-paths-webpack-plugin "3.5.2"
+    tslib "^2.3.0"
+    webpack "^4 || ^5"
+    webpack-node-externals "^3.0.0"
+
 "@nrwl/devkit@14.8.3":
   version "14.8.3"
   resolved "https://registry.npmjs.org/@nrwl/devkit/-/devkit-14.8.3.tgz"
