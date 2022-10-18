@@ -8,6 +8,10 @@ file_blobs:
   apps/microservices/auth/src/app/auth.service.ts: 8cb706074be87ee50fc48421d0381436e9629bda
 ---
 
+<div align="center"><img src="https://firebasestorage.googleapis.com/v0/b/swimmio-content/o/repositories%2FZ2l0aHViJTNBJTNBc3luY2l0JTNBJTNBdGlrYWxr%2Ffae9c7d4-deb8-4dc2-9a12-49dd0132e19e.png?alt=media&token=079d253f-64bf-463f-9f7b-9783f10f77df" style="width:'100%'"/></div>
+
+<br/>
+
 Auth microservice has 4 Endpoints:
 
 <br/>
