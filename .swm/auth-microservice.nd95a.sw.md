@@ -4,8 +4,8 @@ name: Auth Microservice
 file_version: 1.0.2
 app_version: 0.9.7-2
 file_blobs:
-  apps/microservices/auth/src/app/auth.controller.ts: a2e813b8c2b4521f53cf1b67661a89a66c311a72
-  apps/microservices/auth/src/app/auth.service.ts: 83c0a82897969e503c004c6153622feb8c2c3f55
+  apps/microservices/auth/src/app/auth.controller.ts: d685b922ac52b4eb77ec5e8a8e53e870a3f7ec96
+  apps/microservices/auth/src/app/auth.service.ts: 8cb706074be87ee50fc48421d0381436e9629bda
 ---
 
 Auth microservice has 4 Endpoints:
@@ -16,13 +16,13 @@ available via `/api/auth`
 <!-- NOTE-swimm-snippet: the lines below link your snippet to Swimm -->
 ### 📄 apps/microservices/auth/src/app/auth.controller.ts
 ```typescript
-⬜ 14     import { LoginInput, RegisterInput, UserData } from './auth.dto';
-⬜ 15     
-⬜ 16     @ApiTags('Auth')
-🟩 17     @Controller('auth')
-⬜ 18     export class AuthController {
-⬜ 19       constructor(private readonly authService: AuthService) {}
-⬜ 20     
+⬜ 22     import { LoginInput, RegisterInput, UserData } from './auth.dto';
+⬜ 23     
+⬜ 24     @ApiTags('Auth')
+🟩 25     @Controller('auth')
+⬜ 26     export class AuthController {
+⬜ 27       constructor(private readonly authService: AuthService) {}
+⬜ 28     
 ```
 
 <br/>
@@ -39,30 +39,30 @@ available via `/api/auth`
 <!-- NOTE-swimm-snippet: the lines below link your snippet to Swimm -->
 ### 📄 apps/microservices/auth/src/app/auth.controller.ts
 ```typescript
-⬜ 18     export class AuthController {
-⬜ 19       constructor(private readonly authService: AuthService) {}
-⬜ 20     
-🟩 21       @Post('register')
-🟩 22       @ApiBody({
-🟩 23         description: 'Registration params',
-🟩 24         type: RegisterInput,
-🟩 25       })
-🟩 26       @ApiCreatedResponse({
-🟩 27         description: 'User registered successfully and cookie saved on initiator.',
-🟩 28         type: RegisterInput,
-🟩 29       })
-🟩 30       @ApiUnprocessableEntityResponse({
-🟩 31         description: 'Error with the data sent.',
-🟩 32       })
-🟩 33       @ApiConflictResponse({
-🟩 34         description: 'User (email) already exist.',
-🟩 35       })
-🟩 36       async register(@Req() request: Request, @Res() response: Response) {
-🟩 37         return this.authService.register(request, response);
-🟩 38       }
-⬜ 39     
-⬜ 40       @Post('login')
-⬜ 41       @ApiBody({
+⬜ 26     export class AuthController {
+⬜ 27       constructor(private readonly authService: AuthService) {}
+⬜ 28     
+🟩 29       @Post('register')
+🟩 30       @ApiBody({
+🟩 31         description: 'Registration params',
+🟩 32         type: RegisterInput,
+🟩 33       })
+🟩 34       @ApiCreatedResponse({
+🟩 35         description: 'User registered successfully and cookie saved on initiator.',
+🟩 36         type: RegisterInput,
+🟩 37       })
+🟩 38       @ApiUnprocessableEntityResponse({
+🟩 39         description: 'Error with the data sent.',
+🟩 40       })
+🟩 41       @ApiConflictResponse({
+🟩 42         description: 'User (email) already exist.',
+🟩 43       })
+🟩 44       async register(@Req() request: Request, @Res() response: Response) {
+🟩 45         return this.authService.register(request, response);
+🟩 46       }
+⬜ 47     
+⬜ 48       @Post('login')
+⬜ 49       @ApiBody({
 ```
 
 <br/>
@@ -91,79 +91,79 @@ available via `/api/auth`
 <!-- NOTE-swimm-snippet: the lines below link your snippet to Swimm -->
 ### 📄 apps/microservices/auth/src/app/auth.service.ts
 ```typescript
-⬜ 61         res.status(401).json({ message: 'Unauthorized' });
-⬜ 62       }
-⬜ 63     
-🟩 64       async register(req, res) {
-🟩 65         const { name, email, password } = req.body;
-🟩 66         const userEmail = email?.toLowerCase();
-🟩 67     
-🟩 68         if (!name) {
-🟩 69           res.status(422).json({ message: 'Invalid name' });
-🟩 70           return;
-🟩 71         }
-🟩 72     
-🟩 73         if (!userEmail || !userEmail.includes('@')) {
-🟩 74           res.status(422).json({ message: 'Invalid email' });
-🟩 75           return;
-🟩 76         }
-🟩 77     
-🟩 78         if (!password || password.trim().length < 7) {
-🟩 79           res.status(422).json({
-🟩 80             message:
-🟩 81               'Invalid input - password should be at least 7 characters long.',
-🟩 82           });
-🟩 83           return;
-🟩 84         }
-🟩 85     
-🟩 86         const existingUser = await prisma.user.findFirst({
-🟩 87           where: {
-🟩 88             email: userEmail,
-🟩 89           },
-🟩 90         });
-🟩 91     
-🟩 92         if (existingUser) {
-🟩 93           const message = 'Email address is already registered';
-🟩 94     
-🟩 95           res.status(409).json({ message });
-🟩 96           return;
-🟩 97         }
-🟩 98     
-🟩 99         const hashedPassword = await hashPassword(password);
-🟩 100    
-🟩 101        await prisma.user.upsert({
-🟩 102          where: { email: userEmail },
-🟩 103          update: {
-🟩 104            name,
-🟩 105            email: userEmail,
-🟩 106            password: hashedPassword,
-🟩 107            created: new Date(Date.now()),
-🟩 108          },
-🟩 109          create: {
-🟩 110            name,
-🟩 111            email: userEmail,
-🟩 112            password: hashedPassword,
-🟩 113            created: new Date(Date.now()),
-🟩 114          },
-🟩 115        });
-🟩 116        const newUser = await prisma.user.findFirst({
-🟩 117          where: {
-🟩 118            email: userEmail,
-🟩 119          },
-🟩 120        });
-🟩 121        delete newUser.password;
-🟩 122        const sessionID = await getSessionIdFromUserData(existingUser);
-🟩 123        setCookie(res, 'sessionID', sessionID, {
-🟩 124          maxAge: 1000 * 60 * 60,
-🟩 125          path: '/',
-🟩 126          httpOnly: true,
-🟩 127        });
-🟩 128        res.setHeader('Access-Control-Allow-Credentials', 'true');
-🟩 129        res.end(res.getHeader('Set-Cookie'));
-🟩 130      }
-⬜ 131    
-⬜ 132      async me(req, res) {
-⬜ 133        const { userData } = res.locals;
+⬜ 60         res.status(401).json({ message: 'Unauthorized' });
+⬜ 61       }
+⬜ 62     
+🟩 63       async register(req, res) {
+🟩 64         const { name, email, password } = req.body;
+🟩 65         const userEmail = email?.toLowerCase();
+🟩 66     
+🟩 67         if (!name) {
+🟩 68           res.status(422).json({ message: 'Invalid name' });
+🟩 69           return;
+🟩 70         }
+🟩 71     
+🟩 72         if (!userEmail || !userEmail.includes('@')) {
+🟩 73           res.status(422).json({ message: 'Invalid email' });
+🟩 74           return;
+🟩 75         }
+🟩 76     
+🟩 77         if (!password || password.trim().length < 7) {
+🟩 78           res.status(422).json({
+🟩 79             message:
+🟩 80               'Invalid input - password should be at least 7 characters long.',
+🟩 81           });
+🟩 82           return;
+🟩 83         }
+🟩 84     
+🟩 85         const existingUser = await prisma.user.findFirst({
+🟩 86           where: {
+🟩 87             email: userEmail,
+🟩 88           },
+🟩 89         });
+🟩 90     
+🟩 91         if (existingUser) {
+🟩 92           const message = 'Email address is already registered';
+🟩 93     
+🟩 94           res.status(409).json({ message });
+🟩 95           return;
+🟩 96         }
+🟩 97     
+🟩 98         const hashedPassword = await hashPassword(password);
+🟩 99     
+🟩 100        await prisma.user.upsert({
+🟩 101          where: { email: userEmail },
+🟩 102          update: {
+🟩 103            name,
+🟩 104            email: userEmail,
+🟩 105            password: hashedPassword,
+🟩 106            created: new Date(Date.now()),
+🟩 107          },
+🟩 108          create: {
+🟩 109            name,
+🟩 110            email: userEmail,
+🟩 111            password: hashedPassword,
+🟩 112            created: new Date(Date.now()),
+🟩 113          },
+🟩 114        });
+🟩 115        const newUser = await prisma.user.findFirst({
+🟩 116          where: {
+🟩 117            email: userEmail,
+🟩 118          },
+🟩 119        });
+🟩 120        delete newUser.password;
+🟩 121        const sessionID = await getSessionIdFromUserData(existingUser);
+🟩 122        setCookie(res, 'sessionID', sessionID, {
+🟩 123          maxAge: 1000 * 60 * 60,
+🟩 124          path: '/',
+🟩 125          httpOnly: true,
+🟩 126        });
+🟩 127        res.setHeader('Access-Control-Allow-Credentials', 'true');
+🟩 128        res.status(201).end(res.getHeader('Set-Cookie'));
+🟩 129      }
+⬜ 130    
+⬜ 131      async me(req, res) {
+⬜ 132        const { userData } = res.locals;
 ```
 
 <br/>
@@ -180,29 +180,29 @@ available via `/api/auth`
 <!-- NOTE-swimm-snippet: the lines below link your snippet to Swimm -->
 ### 📄 apps/microservices/auth/src/app/auth.controller.ts
 ```typescript
-⬜ 37         return this.authService.register(request, response);
-⬜ 38       }
-⬜ 39     
-🟩 40       @Post('login')
-🟩 41       @ApiBody({
-🟩 42         description: 'Login params',
-🟩 43         type: LoginInput,
-🟩 44       })
-🟩 45       @ApiCreatedResponse({
-🟩 46         description: 'User logged in successfully and cookie saved on initiator.',
-🟩 47       })
-🟩 48       @ApiUnprocessableEntityResponse({
-🟩 49         description: 'Error with the data sent.',
-🟩 50       })
-🟩 51       @ApiUnauthorizedResponse({
-🟩 52         description: 'Error with the data sent. Unauthorized',
-🟩 53       })
-🟩 54       async login(@Req() request: Request, @Res() response: Response) {
-🟩 55         return this.authService.login(request, response);
-🟩 56       }
-⬜ 57     
-⬜ 58       @Post('logout')
-⬜ 59       @ApiOkResponse({
+⬜ 45         return this.authService.register(request, response);
+⬜ 46       }
+⬜ 47     
+🟩 48       @Post('login')
+🟩 49       @ApiBody({
+🟩 50         description: 'Login params',
+🟩 51         type: LoginInput,
+🟩 52       })
+🟩 53       @ApiOkResponse({
+🟩 54         description: 'User logged in successfully and cookie saved on initiator.',
+🟩 55       })
+🟩 56       @ApiUnprocessableEntityResponse({
+🟩 57         description: 'Error with the data sent.',
+🟩 58       })
+🟩 59       @ApiUnauthorizedResponse({
+🟩 60         description: 'Error with the data sent. Unauthorized',
+🟩 61       })
+🟩 62       async login(@Req() request: Request, @Res() response: Response) {
+🟩 63         return this.authService.login(request, response);
+🟩 64       }
+⬜ 65     
+⬜ 66       @Post('logout')
+⬜ 67       @ApiOkResponse({
 ```
 
 <br/>
@@ -227,51 +227,51 @@ available via `/api/auth`
 <!-- NOTE-swimm-snippet: the lines below link your snippet to Swimm -->
 ### 📄 apps/microservices/auth/src/app/auth.service.ts
 ```typescript
-⬜ 21         res.end(res.getHeader('Set-Cookie'));
-⬜ 22       }
-⬜ 23     
-🟩 24       async login(req, res) {
-🟩 25         const { email, password } = req.body;
-🟩 26         const userEmail = email?.toLowerCase();
-🟩 27     
-🟩 28         if (!userEmail || !userEmail.includes('@')) {
-🟩 29           res.status(422).json({ message: 'Invalid email' });
-🟩 30           return;
-🟩 31         }
-🟩 32     
-🟩 33         if (!password || password.trim().length < 7) {
-🟩 34           res.status(422).json({
-🟩 35             message:
-🟩 36               'Invalid input - password should be at least 7 characters long.',
-🟩 37           });
-🟩 38           return;
-🟩 39         }
-🟩 40     
-🟩 41         const existingUser = await prisma.user.findFirst({
-🟩 42           where: {
-🟩 43             email: userEmail,
-🟩 44           },
-🟩 45         });
-🟩 46         if (existingUser) {
-🟩 47           const verified = await verifyPassword(password, existingUser.password);
-🟩 48           if (verified) {
-🟩 49             delete existingUser.password;
-🟩 50             const sessionID = await getSessionIdFromUserData(existingUser);
-🟩 51             setCookie(res, 'sessionID', sessionID, {
-🟩 52               maxAge: 1000 * 60 * 60,
-🟩 53               path: '/',
-🟩 54               httpOnly: true,
-🟩 55             });
-🟩 56             res.setHeader('Access-Control-Allow-Credentials', 'true');
-🟩 57             res.end(res.getHeader('Set-Cookie'));
-🟩 58             return;
-🟩 59           }
-🟩 60         }
-🟩 61         res.status(401).json({ message: 'Unauthorized' });
-🟩 62       }
-⬜ 63     
-⬜ 64       async register(req, res) {
-⬜ 65         const { name, email, password } = req.body;
+⬜ 20         res.status(200).end(res.getHeader('Set-Cookie'));
+⬜ 21       }
+⬜ 22     
+🟩 23       async login(req, res) {
+🟩 24         const { email, password } = req.body;
+🟩 25         const userEmail = email?.toLowerCase();
+🟩 26     
+🟩 27         if (!userEmail || !userEmail.includes('@')) {
+🟩 28           res.status(422).json({ message: 'Invalid email' });
+🟩 29           return;
+🟩 30         }
+🟩 31     
+🟩 32         if (!password || password.trim().length < 7) {
+🟩 33           res.status(422).json({
+🟩 34             message:
+🟩 35               'Invalid input - password should be at least 7 characters long.',
+🟩 36           });
+🟩 37           return;
+🟩 38         }
+🟩 39     
+🟩 40         const existingUser = await prisma.user.findFirst({
+🟩 41           where: {
+🟩 42             email: userEmail,
+🟩 43           },
+🟩 44         });
+🟩 45         if (existingUser) {
+🟩 46           const verified = await verifyPassword(password, existingUser.password);
+🟩 47           if (verified) {
+🟩 48             delete existingUser.password;
+🟩 49             const sessionID = await getSessionIdFromUserData(existingUser);
+🟩 50             setCookie(res, 'sessionID', sessionID, {
+🟩 51               maxAge: 1000 * 60 * 60,
+🟩 52               path: '/',
+🟩 53               httpOnly: true,
+🟩 54             });
+🟩 55             res.setHeader('Access-Control-Allow-Credentials', 'true');
+🟩 56             res.status(200).end(res.getHeader('Set-Cookie'));
+🟩 57             return;
+🟩 58           }
+🟩 59         }
+🟩 60         res.status(401).json({ message: 'Unauthorized' });
+🟩 61       }
+⬜ 62     
+⬜ 63       async register(req, res) {
+⬜ 64         const { name, email, password } = req.body;
 ```
 
 <br/>
@@ -288,20 +288,20 @@ available via `/api/auth`
 <!-- NOTE-swimm-snippet: the lines below link your snippet to Swimm -->
 ### 📄 apps/microservices/auth/src/app/auth.controller.ts
 ```typescript
-⬜ 55         return this.authService.login(request, response);
-⬜ 56       }
-⬜ 57     
-🟩 58       @Post('logout')
-🟩 59       @ApiOkResponse({
-🟩 60         description:
-🟩 61           'User successfully logged out and cookie removed from initiator.',
-🟩 62       })
-🟩 63       async logout(@Req() request: Request, @Res() response: Response) {
-🟩 64         return this.authService.logout(request, response);
-🟩 65       }
-⬜ 66     
-⬜ 67       @Get('me')
-⬜ 68       @ApiOkResponse({
+⬜ 63         return this.authService.login(request, response);
+⬜ 64       }
+⬜ 65     
+🟩 66       @Post('logout')
+🟩 67       @ApiOkResponse({
+🟩 68         description:
+🟩 69           'User successfully logged out and cookie removed from initiator.',
+🟩 70       })
+🟩 71       async logout(@Req() request: Request, @Res() response: Response) {
+🟩 72         return this.authService.logout(request, response);
+🟩 73       }
+⬜ 74     
+⬜ 75       @Get('me')
+⬜ 76       @ApiOkResponse({
 ```
 
 <br/>
@@ -310,21 +310,21 @@ available via `/api/auth`
 <!-- NOTE-swimm-snippet: the lines below link your snippet to Swimm -->
 ### 📄 apps/microservices/auth/src/app/auth.service.ts
 ```typescript
-⬜ 11     
-⬜ 12     @Injectable()
-⬜ 13     export class AuthService {
-🟩 14       async logout(req, res) {
-🟩 15         setCookie(res, 'sessionID', 0, {
-🟩 16           maxAge: -1,
-🟩 17           path: '/',
-🟩 18           httpOnly: true,
-🟩 19         });
-🟩 20         res.setHeader('Access-Control-Allow-Credentials', 'true');
-🟩 21         res.end(res.getHeader('Set-Cookie'));
-🟩 22       }
-⬜ 23     
-⬜ 24       async login(req, res) {
-⬜ 25         const { email, password } = req.body;
+⬜ 10     
+⬜ 11     @Injectable()
+⬜ 12     export class AuthService {
+🟩 13       async logout(req, res) {
+🟩 14         setCookie(res, 'sessionID', 0, {
+🟩 15           maxAge: -1,
+🟩 16           path: '/',
+🟩 17           httpOnly: true,
+🟩 18         });
+🟩 19         res.setHeader('Access-Control-Allow-Credentials', 'true');
+🟩 20         res.status(200).end(res.getHeader('Set-Cookie'));
+🟩 21       }
+⬜ 22     
+⬜ 23       async login(req, res) {
+⬜ 24         const { email, password } = req.body;
 ```
 
 <br/>
@@ -341,24 +341,24 @@ available via `/api/auth`
 <!-- NOTE-swimm-snippet: the lines below link your snippet to Swimm -->
 ### 📄 apps/microservices/auth/src/app/auth.controller.ts
 ```typescript
-⬜ 64         return this.authService.logout(request, response);
-⬜ 65       }
-⬜ 66     
-🟩 67       @Get('me')
-🟩 68       @ApiOkResponse({
-🟩 69         description: 'Returns user data if logged in',
-🟩 70         type: UserData,
-🟩 71       })
-🟩 72       @ApiUnauthorizedResponse({
-🟩 73         description: 'Unauthorized',
-🟩 74       })
-🟩 75       @ApiForbiddenResponse({
-🟩 76         description: 'Unauthorized - Blocked by auth guard',
-🟩 77       })
-🟩 78       async me(@Req() request: Request, @Res() response: Response) {
-🟩 79         return this.authService.me(request, response);
-🟩 80       }
-⬜ 81     }
+⬜ 72         return this.authService.logout(request, response);
+⬜ 73       }
+⬜ 74     
+🟩 75       @Get('me')
+🟩 76       @ApiOkResponse({
+🟩 77         description: 'Returns user data if logged in',
+🟩 78         type: UserData,
+🟩 79       })
+🟩 80       @ApiUnauthorizedResponse({
+🟩 81         description: 'Unauthorized',
+🟩 82       })
+🟩 83       @ApiForbiddenResponse({
+🟩 84         description: 'Unauthorized - Blocked by auth guard',
+🟩 85       })
+🟩 86       async me(@Req() request: Request, @Res() response: Response) {
+🟩 87         return this.authService.me(request, response);
+🟩 88       }
+⬜ 89     }
 ```
 
 <br/>
@@ -371,19 +371,18 @@ available via `/api/auth`
 <!-- NOTE-swimm-snippet: the lines below link your snippet to Swimm -->
 ### 📄 apps/microservices/auth/src/app/auth.service.ts
 ```typescript
-⬜ 129        res.end(res.getHeader('Set-Cookie'));
-⬜ 130      }
-⬜ 131    
-🟩 132      async me(req, res) {
-🟩 133        const { userData } = res.locals;
-🟩 134        if (userData?.id) {
-🟩 135          res.json({ userData });
-🟩 136          return;
-🟩 137        }
-🟩 138        res.status(401).send('unauthorized');
-🟩 139      }
-⬜ 140    }
-⬜ 141    
+⬜ 128        res.status(201).end(res.getHeader('Set-Cookie'));
+⬜ 129      }
+⬜ 130    
+🟩 131      async me(req, res) {
+🟩 132        const { userData } = res.locals;
+🟩 133        if (userData?.id) {
+🟩 134          res.status(200).json({ userData });
+🟩 135          return;
+🟩 136        }
+🟩 137        res.status(401).send('unauthorized');
+🟩 138      }
+⬜ 139    }
 ```
 
 <br/>
