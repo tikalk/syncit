@@ -13,7 +13,11 @@
         "outputPath": "dist/apps/microservices/auth",
         "main": "apps/microservices/auth/src/main.ts",
         "tsConfig": "apps/microservices/auth/tsconfig.app.json",
-        "assets": ["apps/microservices/auth/src/assets"]
+        "assets": [
+          "apps/microservices/auth/src/Dockerfile",
+          "apps/microservices/auth/src/assets"
+        ],
+        "generatePackageJson": true
       },
       "configurations": {
         "production": {
@@ -25,7 +29,8 @@
               "replace": "apps/microservices/auth/src/environments/environment.ts",
               "with": "apps/microservices/auth/src/environments/environment.prod.ts"
             }
-          ]
+          ],
+          "generatePackageJson": true
         }
       }
     },
