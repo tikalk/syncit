@@ -16,7 +16,7 @@ const schema = yup
   .required();
 
 function Login() {
-  const isBeta = process.env.NEXT_PUBLIC_BETA;
+  const isBeta = JSON.parse(process.env.NEXT_PUBLIC_BETA);
 
   const router = useRouter();
   const { toast } = useToast();
