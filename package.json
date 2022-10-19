@@ -8,7 +8,7 @@
     "env-check": "dotenv-checker -s .env.example -e .env",
     "lint": "nx run-many --all --target=lint --parallel",
     "prepare": "husky install && yarn env-check",
-    "prepare:db": "prisma:migrate && prisma:generate && prisma:push",
+    "prepare:db": "yarn prisma:migrate && yarn prisma:generate && yarn prisma:push",
     "prisma:generate": "prisma generate --schema=./libs/models/src/prisma/prisma.schema",
     "prisma:migrate": "prisma migrate dev --schema=./libs/models/src/prisma/prisma.schema",
     "prisma:push": "prisma db push --schema=./libs/models/src/prisma/prisma.schema",
