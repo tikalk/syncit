@@ -1,8 +1,10 @@
-FROM node:lts
+FROM node:18-slim
+
+RUN apt-get update
+
+RUN apt-get install -y openssl
 
 WORKDIR /app
-
-RUN apk add --update libc6-compat openssl openssl-dev
 
 COPY ./dist/apps/microservices/auth .
 
