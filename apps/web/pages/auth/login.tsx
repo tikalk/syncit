@@ -16,6 +16,8 @@ const schema = yup
   .required();
 
 function Login() {
+  const isBeta = process.env.NEXT_PUBLIC_BETA;
+
   const router = useRouter();
   const { toast } = useToast();
   const {
@@ -50,14 +52,17 @@ function Login() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center">
       <h2 className="card-title">Sign in to your account</h2>
-      <p>
-        Or{' '}
-        <Link href="/auth/register">
-          <span className="link link-hover text-primary">
-            register new account
-          </span>
-        </Link>
-      </p>
+      {!isBeta && (
+        <p>
+          Or{' '}
+          <Link href="/auth/register">
+            <span className="link link-hover text-primary">
+              register new account
+            </span>
+          </Link>
+        </p>
+      )}
+
       <div className="card w-1/3 bg-base-100 shadow-xl mt-5">
         <div className="card-body">
           <form onSubmit={handleSubmit(onSubmit)}>
