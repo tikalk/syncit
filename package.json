@@ -1,21 +1,31 @@
 {
   "name": "syncit2.0",
   "version": "0.0.0",
+  "private": true,
   "license": "MIT",
   "scripts": {
-    "prestart": "yarn env-check",
-    "start": "nx run-many --target=serve --projects=web,be",
-    "lint": "nx run-many --all --target=lint --parallel",
     "build": "nx build",
-    "test": "nx run-many --all --target=test  --codeCoverage --coverageReporters=json",
-    "prepare": "husky install",
+    "env-check": "dotenv-checker -s .env.example -e .env",
+    "lint": "nx run-many --all --target=lint --parallel",
+    "prepare": "husky install && yarn env-check",
+    "prepare:db": "yarn prisma:migrate && yarn prisma:generate && yarn prisma:push",
     "prisma:generate": "prisma generate --schema=./libs/models/src/prisma/prisma.schema",
     "prisma:migrate": "prisma migrate dev --schema=./libs/models/src/prisma/prisma.schema",
     "prisma:push": "prisma db push --schema=./libs/models/src/prisma/prisma.schema",
-    "env-check": "dotenv-checker -s .env.example -e .env",
-    "predev": "dotenv-checker --schema .env.schema --env .env.local"
+    "start": "nx run-many --all --target=serve",
+    "test": "nx run-many --all --target=test  --codeCoverage --coverageReporters=json"
   },
-  "private": true,
+  "lint-staged": {
+    "apps/**/*.{js,ts,jsx,tsx}": [
+      "eslint --fix"
+    ],
+    "libs/**/*.{js,ts,jsx,tsx}": [
+      "eslint --fix"
+    ],
+    "*.json": [
+      "prettier --write"
+    ]
+  },
   "dependencies": {
     "@heroicons/react": "^2.0.12",
     "@hookform/resolvers": "^2.9.8",
@@ -23,6 +33,7 @@
     "@nestjs/core": "^9.0.0",
     "@nestjs/microservices": "^9.1.4",
     "@nestjs/platform-express": "^9.0.0",
+    "@nestjs/swagger": "^6.1.2",
     "@nrwl/next": "14.8.3",
     "@prisma/client": "^4.4.0",
     "amqp-connection-manager": "^4.1.7",
@@ -50,14 +61,15 @@
     "yup": "^0.32.11"
   },
   "devDependencies": {
+    "@golevelup/ts-jest": "^0.3.3",
     "@nestjs/schematics": "^9.0.0",
-    "@nestjs/testing": "^9.0.0",
+    "@nestjs/testing": "^9.1.4",
     "@nrwl/cli": "14.8.3",
-    "@nrwl/cypress": "14.8.3",
+    "@nrwl/cypress": "15.0.0",
     "@nrwl/eslint-plugin-nx": "14.8.3",
     "@nrwl/jest": "14.8.3",
     "@nrwl/linter": "14.8.3",
-    "@nrwl/nest": "^14.8.3",
+    "@nrwl/nest": "^15.0.0",
     "@nrwl/node": "14.8.3",
     "@nrwl/react": "14.8.3",
     "@nrwl/web": "14.8.3",
@@ -68,15 +80,15 @@
     "@types/bcryptjs": "^2.4.2",
     "@types/cookie": "^0.5.1",
     "@types/jest": "28.1.1",
-    "@types/node": "18.8.3",
+    "@types/node": "18.11.0",
     "@types/react": "18.0.20",
     "@types/react-dom": "18.0.6",
     "@types/uuid": "^8.3.4",
-    "@typescript-eslint/eslint-plugin": "^5.40.0",
+    "@typescript-eslint/eslint-plugin": "^5.40.1",
     "@typescript-eslint/parser": "^5.40.0",
     "autoprefixer": "^10.4.12",
     "babel-jest": "29.1.2",
-    "cypress": "^10.7.0",
+    "cypress": "^10.10.0",
     "dotenv-checker": "^1.1.5",
     "eslint": "~8.25.0",
     "eslint-config-next": "12.3.1",
@@ -89,6 +101,7 @@
     "husky": "^8.0.1",
     "jest": "28.1.1",
     "jest-environment-jsdom": "29.1.2",
+    "jest-mock-extended": "^3.0.1",
     "lint-staged": "^13.0.3",
     "nx": "14.8.3",
     "postcss": "^8.4.17",
@@ -99,16 +112,5 @@
     "ts-jest": "28.0.5",
     "ts-node": "10.9.1",
     "typescript": "~4.8.2"
-  },
-  "lint-staged": {
-    "apps/**/*.{js,ts,jsx,tsx}": [
-      "eslint --fix"
-    ],
-    "libs/**/*.{js,ts,jsx,tsx}": [
-      "eslint --fix"
-    ],
-    "*.json": [
-      "prettier --write"
-    ]
   }
 }

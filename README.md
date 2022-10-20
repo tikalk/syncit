@@ -16,8 +16,8 @@
 
 1. Run `yarn` in order to install all dependencies
 2. Run `docker-compose up -d` to run all infrastructure.
-3. Copy `.env.example` to `.env` and setup the data needed there.
-4. Run `yarn prisma:migrate && yarn prisma:generate && yarn prisma:push` in order to setup the DB
+3. Update `.env` According the instruction appears there.
+4. Run `prepare:db` in order to setup the DB
 5. Now that everything is setup run `yarn start`
 
 ## Integrations

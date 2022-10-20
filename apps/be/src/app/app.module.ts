@@ -1,10 +1,8 @@
 import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
-import { AuthController } from './auth/auth.controller';
-import { AuthService } from './auth/auth.service';
 import { CalendarsController } from './calendars/calendars.controller';
 import { CalendarsService } from './calendars/calendars.service';
 import { IntegrationsController } from './integrations/integrations.controller';
-import { UserDataMiddleware } from './user.data.middleware';
+import { UserDataMiddleware } from '@syncit2.0/core/nest-lib';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 
 @Module({
@@ -23,8 +21,8 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
       },
     ]),
   ],
-  controllers: [AuthController, CalendarsController, IntegrationsController],
-  providers: [AuthService, CalendarsService],
+  controllers: [CalendarsController, IntegrationsController],
+  providers: [CalendarsService],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {

@@ -1,0 +1,65 @@
+{
+  "name": "microservices-auth",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/microservices/auth/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "target": "node",
+        "compiler": "tsc",
+        "outputPath": "dist/apps/microservices/auth",
+        "main": "apps/microservices/auth/src/main.ts",
+        "tsConfig": "apps/microservices/auth/tsconfig.app.json",
+        "assets": [
+          "apps/microservices/auth/src/Dockerfile",
+          "apps/microservices/auth/src/assets"
+        ],
+        "generatePackageJson": true
+      },
+      "configurations": {
+        "production": {
+          "optimization": true,
+          "extractLicenses": true,
+          "inspect": false,
+          "fileReplacements": [
+            {
+              "replace": "apps/microservices/auth/src/environments/environment.ts",
+              "with": "apps/microservices/auth/src/environments/environment.prod.ts"
+            }
+          ],
+          "generatePackageJson": true
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/js:node",
+      "options": {
+        "buildTarget": "microservices-auth:build"
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "microservices-auth:build:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/microservices/auth/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/microservices/auth"],
+      "options": {
+        "jestConfig": "apps/microservices/auth/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
