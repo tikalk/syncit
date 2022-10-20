@@ -18,9 +18,9 @@ import {
   RmqContext,
 } from '@nestjs/microservices';
 
-import { CalendarsService } from './calendars.service';
+import { CalendarsService } from './app.service';
 
-@Controller('calendars')
+@Controller()
 export class CalendarsController {
   constructor(
     private readonly calendarsService: CalendarsService,
