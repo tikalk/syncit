@@ -32,7 +32,7 @@ export class GoogleCalendarService {
 
   private googleAuth = async ({ id, key }: Credential) => {
     const { client_id, client_secret, redirect_uris } = JSON.parse(
-      process.env['GOOGLE_API_CREDENTIALS'] || ''
+      process.env['GOOGLE_API_CREDENTIALS'] || '{}'
     ).web;
     if (typeof client_id === 'string') this.client_id = client_id;
     if (typeof client_secret === 'string') this.client_secret = client_secret;

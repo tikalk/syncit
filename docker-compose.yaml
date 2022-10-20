@@ -3,7 +3,7 @@ services:
   postgres:
     image: postgres:13
     ports:
-      - "5433:5432"
+      - "5432:5432"
     restart: always
     volumes:
       - db_data:/var/lib/postgresql/data
@@ -17,6 +17,7 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+      
 
   redis:
     image: "redis:alpine"
@@ -35,6 +36,25 @@ services:
     volumes:
       - rabbitmq_data_persistence:/var/lib/rabbitmq/
       - rabbitmq_log_persistence:/var/log/rabbitmq
+  development:
+    build: ./
+    ports:
+    - 4200:4200
+    - 3333:3333
+    stdin_open: true
+    tty: true
+    environment:
+      DATABASE_URL: "postgresql://postgres:postgres@postgres:5432/syncit?schema=syncit"
+      RABBITMQ_USER: "guest"
+      RABBITMQ_PASSWORD: "guest"
+      RABBITMQ_HOST: "rabbitmq:5672"
+      RABBITMQ_QUEUE_NAME: "events-watch"
+      NEXT_PUBLIC_WEBAPP_URL: "http://localhost:4200"
+      GOOGLE_API_CREDENTIALS: '{"web":{"client_id":"876605967931-k68t49n0m0rim80cscmihq57b5tjr55q.apps.googleusercontent.com","project_id":"cal-com-349115","auth_uri":"https://accounts.google.com/o/oauth2/auth","token_uri":"https://oauth2.googleapis.com/token","auth_provider_x509_cert_url":"https://www.googleapis.com/oauth2/v1/certs","client_secret":"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","redirect_uris":["http://localhost/api/integrations/googlecalendar/callback"]}}'
+    depends_on:
+      - postgres
+      - redis
+      - rabbitmq
 
 volumes:
   db_data:
