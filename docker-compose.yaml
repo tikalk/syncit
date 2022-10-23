@@ -55,10 +55,12 @@ services:
       - postgres
       - redis
       - rabbitmq
+    volumes:
+      - ./:/app
+      - /app/node_modules
 
 volumes:
   db_data:
   redis_persistence:
   rabbitmq_data_persistence:
   rabbitmq_log_persistence:
-
