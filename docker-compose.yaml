@@ -40,7 +40,10 @@ services:
     build: ./
     ports:
     - 4200:4200
+    - 4444:4444
     - 3333:3333
+    - 3334:3334
+    - 9229:9229
     stdin_open: true
     tty: true
     environment:

@@ -24,6 +24,7 @@
       "defaultConfiguration": "development",
       "options": {
         "buildTarget": "web:build",
+        "port": 4444,
         "dev": true
       },
       "configurations": {
