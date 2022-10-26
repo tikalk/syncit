@@ -24,7 +24,8 @@
       "defaultConfiguration": "development",
       "options": {
         "buildTarget": "web:build",
-        "port": 4444,
+        "host": "0.0.0.0",
+        "port": 9003,
         "dev": true
       },
       "configurations": {

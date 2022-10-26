@@ -1,0 +1,42 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    ,
+    {
+      "name": "debugger:be",
+      "type": "node",
+      "request": "attach",
+      "remoteRoot": "/app/",
+      "port": 9001,
+      "address": "0.0.0.0",
+      "localRoot": "${workspaceFolder}/",
+      "protocol": "inspector",
+      "restart": true
+    }
+    {
+      "name": "debugger:microservices",
+      "type": "node",
+      "request": "attach",
+      "remoteRoot": "/app/",
+      "port": 9002,
+      "address": "0.0.0.0",
+      "localRoot": "${workspaceFolder}/",
+      "protocol": "inspector",
+      "restart": true
+    },
+    {
+      "name": "debugger:web",
+      "type": "node",
+      "request": "attach",
+      "remoteRoot": "/app/",
+      "port": 9003,
+      "address": "0.0.0.0",
+      "localRoot": "${workspaceFolder}/",
+      "protocol": "inspector",
+      "restart": true
+    },
+  ]
+}

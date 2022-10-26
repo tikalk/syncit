@@ -23,7 +23,7 @@
         "production": {
           "optimization": true,
           "extractLicenses": true,
-          "inspect": false,
+          "inspect": true,
           "fileReplacements": [
             {
               "replace": "apps/microservices/auth/src/environments/environment.ts",
@@ -37,7 +37,9 @@
     "serve": {
       "executor": "@nrwl/js:node",
       "options": {
-        "buildTarget": "microservices-auth:build"
+        "buildTarget": "microservices-auth:build",
+        "host": "0.0.0.0",
+        "port": 9002
       },
       "configurations": {
         "production": {

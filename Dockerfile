@@ -1,4 +1,4 @@
-FROM nikolaik/python-nodejs:python3.10-nodejs18-alpine as Dev
+FROM nikolaik/python-nodejs:python3.10-nodejs18 as Dev
 WORKDIR /app
 COPY package.json .
 COPY .env.example .
