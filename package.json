@@ -73,7 +73,7 @@
     "@nrwl/node": "14.8.3",
     "@nrwl/react": "14.8.3",
     "@nrwl/web": "14.8.3",
-    "@nrwl/workspace": "14.8.3",
+    "@nrwl/workspace": "15.0.3",
     "@swc/core": "^1.2.173",
     "@swc/jest": "0.2.23",
     "@testing-library/react": "13.4.0",
