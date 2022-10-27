@@ -3,14 +3,11 @@ import { User } from '@prisma/client';
 import { v4 as uuidv4 } from 'uuid';
 import { b64Decode, b64Encode } from './auth';
 
-export const redis = new Redis({
-  port: 6379, // Redis port
-  host: "redis", // Redis host
-});
+const settings = process.env.REDIS_SETTINGS ? JSON.parse(process.env.REDIS_SETTINGS) : {};
+export const redis = new Redis(settings);
 
 export const getSessionIdFromUserData = async (userData: User) => {
   const sessionID = uuidv4();
-  console.log(redis);
   await redis.set(
     sessionID,
     b64Encode(JSON.stringify(userData)),
@@ -21,7 +18,6 @@ export const getSessionIdFromUserData = async (userData: User) => {
 };
 
 export const getUserDataFromSessionId = async (sessionId: string) => {
-  console.log(redis);
   const token = await redis.get(sessionId);
   if (!token) {
     return false;

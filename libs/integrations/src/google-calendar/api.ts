@@ -19,7 +19,6 @@ const scopes = [
 ];
 
 const prisma = new PrismaClient();
-console.log(process.env['GOOGLE_API_CREDENTIALS'])
 const { client_id, client_secret } = JSON.parse(
   process.env['GOOGLE_API_CREDENTIALS'] || ''
 ).web;

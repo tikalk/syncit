@@ -6,3 +6,4 @@ README.md
 .editorconfig
 node_modules/
 dist/
+rest.http
