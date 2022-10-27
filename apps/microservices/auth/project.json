@@ -54,7 +54,7 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/apps/microservices/auth"],
+      "outputs": ["{workspaceRoot}/coverage/apps/microservices/auth"],
       "options": {
         "jestConfig": "apps/microservices/auth/jest.config.ts",
         "passWithNoTests": true

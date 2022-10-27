@@ -16,7 +16,7 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/core/hooks"],
+      "outputs": ["{workspaceRoot}/coverage/libs/core/hooks"],
       "options": {
         "jestConfig": "libs/core/hooks/jest.config.ts",
         "passWithNoTests": true
