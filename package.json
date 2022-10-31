@@ -34,7 +34,7 @@
     "@nestjs/microservices": "^9.1.4",
     "@nestjs/platform-express": "^9.0.0",
     "@nestjs/swagger": "^6.1.2",
-    "@nrwl/next": "15.0.3",
+    "@nrwl/next": "15.0.4",
     "@prisma/client": "^4.4.0",
     "amqp-connection-manager": "^4.1.7",
     "amqplib": "^0.10.3",
