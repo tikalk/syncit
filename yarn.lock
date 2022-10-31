@@ -2136,7 +2136,7 @@
     schema-utils "^3.0.0"
     source-map "^0.7.3"
 
-"@prisma/client@^4.4.0":
+"@prisma/client@^4.5.0":
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/@prisma/client/-/client-4.5.0.tgz#f708549bee3da396d5741d846b4e4306b120210c"
   integrity sha512-B2cV0OPI1smhdYUxsJoLYQLoMlLH06MUxgFUWQnHodGMX98VRVXKmQE/9OcrTNkqtke5RC+YU24Szxd04tZA2g==
