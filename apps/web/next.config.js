@@ -12,6 +12,13 @@ const nextConfig = {
     // See: https://github.com/gregberge/svgr
     svgr: false,
   },
+  images: {
+    remotePatterns: [{
+      hostname: '0.0.0.0',
+      port: '4200'
+      }
+    ]
+  }
 };
 
 module.exports = withNx(nextConfig);
