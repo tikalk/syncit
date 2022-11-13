@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "@heroicons/react": "^2.0.12",
-    "@hookform/resolvers": "^2.9.8",
+    "@hookform/resolvers": "^2.9.10",
     "@nestjs/common": "^9.0.0",
     "@nestjs/core": "^9.0.0",
     "@nestjs/microservices": "^9.1.4",
