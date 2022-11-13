@@ -1,7 +1,8 @@
 import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
-import { IntegrationsController } from './integrations/integrations.controller';
-import { UserDataMiddleware } from '@syncit2.0/core/nest-lib';
 import { ClientsModule, Transport } from '@nestjs/microservices';
+import { UserDataMiddleware } from '@syncit2.0/core/nest-lib';
+import { CalendarsController } from './app.controller';
+import { CalendarsService } from './app.service';
 
 @Module({
   imports: [
@@ -19,9 +20,10 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
       },
     ]),
   ],
-  controllers: [ IntegrationsController],
-  providers: [],
+  controllers: [CalendarsController],
+  providers: [CalendarsService],
 })
+
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
     consumer.apply(UserDataMiddleware).forRoutes('*');

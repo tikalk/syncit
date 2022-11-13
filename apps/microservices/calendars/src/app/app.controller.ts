@@ -1,4 +1,3 @@
-import { Response } from 'express';
 import {
   Controller,
   Delete,
@@ -8,19 +7,20 @@ import {
   Post,
   Req,
   Res,
+  Response,
+  Request,
 } from '@nestjs/common';
 import {
   ClientProxy,
   Ctx,
   EventPattern,
-  MessagePattern,
   Payload,
   RmqContext,
 } from '@nestjs/microservices';
 
-import { CalendarsService } from './calendars.service';
+import { CalendarsService } from './app.service';
 
-@Controller('calendars')
+@Controller()
 export class CalendarsController {
   constructor(
     private readonly calendarsService: CalendarsService,
@@ -75,6 +75,8 @@ export class CalendarsController {
       this.rmqClient.emit(method, { calId, event });
     });
 
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     return response.json({ status: 'ok' });
   }
 
