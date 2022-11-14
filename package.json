@@ -63,7 +63,7 @@
   "devDependencies": {
     "@golevelup/ts-jest": "^0.3.3",
     "@nestjs/schematics": "^9.0.0",
-    "@nestjs/testing": "^9.1.4",
+    "@nestjs/testing": "^9.2.0",
     "@nrwl/cli": "15.0.3",
     "@nrwl/cypress": "15.0.3",
     "@nrwl/eslint-plugin-nx": "15.0.3",
