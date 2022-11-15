@@ -3,6 +3,10 @@
     "target": "http://localhost:3334",
     "secure": false
   },
+  "/api/integrations": {
+    "target": "http://localhost:3336",
+    "secure": false
+  },
   "/api/calendars": {
     "target": "http://localhost:3335",
     "secure": false
