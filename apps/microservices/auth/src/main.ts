@@ -9,9 +9,12 @@ import { AuthGuard } from '@syncit2.0/core/nest-lib';
 import { AuthModule } from './app/auth.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import * as cookieParser from 'cookie-parser';
+import { createLogger } from '@syncit2.0/logger';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AuthModule);
+  const app = await NestFactory.create(AuthModule, {
+    logger: createLogger('auth'),
+  });
   app.use(cookieParser());
   app.useGlobalGuards(new AuthGuard());
   const globalPrefix = 'api';

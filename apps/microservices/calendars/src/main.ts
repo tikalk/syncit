@@ -8,9 +8,12 @@ import { NestFactory } from '@nestjs/core';
 import { AuthGuard } from '@syncit2.0/core/nest-lib';
 import * as cookieParser from 'cookie-parser';
 import { AppModule } from './app/app.module';
+import { createLogger } from '@syncit2.0/logger';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, {
+    logger: createLogger('calendars'),
+  });
   const globalPrefix = 'api/calendars';
   app.setGlobalPrefix(globalPrefix);
   app.use(cookieParser());

@@ -12,7 +12,7 @@
     "prisma:generate": "prisma generate --schema=./libs/models/src/prisma/prisma.schema",
     "prisma:migrate": "prisma migrate dev --schema=./libs/models/src/prisma/prisma.schema",
     "prisma:push": "prisma db push --schema=./libs/models/src/prisma/prisma.schema",
-    "start": "nx run-many --all --target=serve",
+    "start": "nx run-many --all --target=serve --parallel --maxParallel=10",
     "test": "nx run-many --all --target=test  --codeCoverage --coverageReporters=json"
   },
   "lint-staged": {
@@ -58,6 +58,7 @@
     "short-uuid": "^4.2.0",
     "tslib": "^2.3.0",
     "uuid": "^9.0.0",
+    "winston-logzio": "^5.1.7",
     "yup": "^0.32.11"
   },
   "devDependencies": {
