@@ -21,6 +21,7 @@
       "@syncit2.0/core/store": ["libs/core/store/src/index.ts"],
       "@syncit2.0/core/utils": ["libs/core/utils/src/index.ts"],
       "@syncit2.0/integrations": ["libs/integrations/src/index.ts"],
+      "@syncit2.0/logger": ["libs/logger/src/index.ts"],
       "@syncit2.0/models": ["libs/models/src/index.ts"]
     }
   },

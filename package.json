@@ -58,6 +58,7 @@
     "short-uuid": "^4.2.0",
     "tslib": "^2.3.0",
     "uuid": "^9.0.0",
+    "winston-logzio": "^5.1.7",
     "yup": "^0.32.11"
   },
   "devDependencies": {
