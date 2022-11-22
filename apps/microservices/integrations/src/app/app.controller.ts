@@ -1,11 +1,20 @@
-import { Body, Controller, Delete, Get, Param, Req, Res } from '@nestjs/common';
+import {
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Req,
+  Res,
+  Request,
+  Response,
+} from '@nestjs/common';
 import * as integrations from '@syncit2.0/integrations';
 import { PrismaClient } from '@prisma/client';
 import { getUserDataFromSessionId } from '@syncit2.0/core/utils';
 
 const prisma = new PrismaClient();
 
-@Controller('integrations')
+@Controller()
 export class IntegrationsController {
   @Get(':integration/:actions')
   async integrations(
