@@ -13,7 +13,8 @@
     "prisma:migrate": "prisma migrate dev --schema=./libs/models/src/prisma/prisma.schema",
     "prisma:push": "prisma db push --schema=./libs/models/src/prisma/prisma.schema",
     "start": "nx run-many --all --target=serve",
-    "test": "nx run-many --all --target=test  --codeCoverage --coverageReporters=json"
+    "test": "nx run-many --all --target=test  --codeCoverage --coverageReporters=json",
+    "predev": "dotenv-checker --schema .env.schema --env .env.local"
   },
   "lint-staged": {
     "apps/**/*.{js,ts,jsx,tsx}": [
