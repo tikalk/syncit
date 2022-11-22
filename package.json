@@ -86,7 +86,7 @@
     "@types/uuid": "^8.3.4",
     "@typescript-eslint/eslint-plugin": "^5.40.1",
     "@typescript-eslint/parser": "^5.40.0",
-    "autoprefixer": "^10.4.12",
+    "autoprefixer": "^10.4.13",
     "babel-jest": "29.2.2",
     "cypress": "^10.10.0",
     "dotenv-checker": "^1.1.5",
