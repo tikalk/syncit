@@ -12,7 +12,7 @@
     "prisma:generate": "prisma generate --schema=./libs/models/src/prisma/prisma.schema",
     "prisma:migrate": "prisma migrate dev --schema=./libs/models/src/prisma/prisma.schema",
     "prisma:push": "prisma db push --schema=./libs/models/src/prisma/prisma.schema",
-    "start": "nx run-many --all --target=serve",
+    "start": "nx run-many --all --target=serve --parallel --maxParallel=10",
     "test": "nx run-many --all --target=test  --codeCoverage --coverageReporters=json"
   },
   "lint-staged": {
