@@ -42,7 +42,7 @@
     "bcryptjs": "^2.4.3",
     "cookie": "^0.5.0",
     "cookie-parser": "^1.4.6",
-    "core-js": "^3.6.5",
+    "core-js": "^3.26.1",
     "daisyui": "^2.31.0",
     "googleapis": "^108.0.0",
     "ioredis": "^5.2.3",
