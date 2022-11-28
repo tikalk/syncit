@@ -87,7 +87,7 @@
     "@typescript-eslint/eslint-plugin": "^5.40.1",
     "@typescript-eslint/parser": "^5.40.0",
     "autoprefixer": "^10.4.13",
-    "babel-jest": "29.2.2",
+    "babel-jest": "29.3.1",
     "cypress": "^10.10.0",
     "dotenv-checker": "^1.1.5",
     "eslint": "~8.25.0",
