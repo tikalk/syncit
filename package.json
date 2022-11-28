@@ -90,7 +90,7 @@
     "babel-jest": "29.2.2",
     "cypress": "^10.10.0",
     "dotenv-checker": "^1.1.5",
-    "eslint": "~8.25.0",
+    "eslint": "~8.28.0",
     "eslint-config-next": "12.3.1",
     "eslint-config-prettier": "8.5.0",
     "eslint-plugin-cypress": "^2.10.3",
