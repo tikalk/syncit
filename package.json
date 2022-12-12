@@ -36,7 +36,7 @@
     "@nestjs/swagger": "^6.1.2",
     "@nrwl/next": "15.0.13",
     "@prisma/client": "^4.5.0",
-    "amqp-connection-manager": "^4.1.7",
+    "amqp-connection-manager": "^4.1.9",
     "amqplib": "^0.10.3",
     "axios": "^1.1.2",
     "bcryptjs": "^2.4.3",
