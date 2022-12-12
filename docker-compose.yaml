@@ -1,5 +1,41 @@
 version: "3.6"
 services:
+  web:
+    image: web
+    environment:
+      - apiPath=http://api:3333
+    ports:
+      - '8080:4200'
+  auth-service:
+    image: auth
+    ports:
+      - '3334:3334'
+    depends_on:
+      - postgres
+      - redis
+    links:
+      - "postgres:database"
+      - "redis:redis"
+  calendars-service:
+    image: calendars
+    ports:
+      - '3335:3335'
+    depends_on:
+      - postgres
+      - redis
+    links:
+      - "postgres:database"
+      - "redis:redis"
+  integrations-service:
+    image: integrations
+    ports:
+      - '3336:3336'
+    depends_on:
+      - postgres
+      - redis
+    links:
+      - "postgres:database"
+      - "redis:redis"
   postgres:
     image: postgres:13
     ports:
@@ -26,7 +62,6 @@ services:
       - "6379:6379"
     volumes:
       - redis_persistence:/bitnami/redis/data
-
   rabbitmq:
     image: rabbitmq:3-management-alpine
     ports:

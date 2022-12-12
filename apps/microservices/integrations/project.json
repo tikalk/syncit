@@ -4,6 +4,16 @@
   "sourceRoot": "apps/microservices/integrations/src",
   "projectType": "application",
   "targets": {
+    "deploy": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "nx build microservices-integrations",
+          "docker build -f ./apps/microservices/integrations/Dockerfile . -t integrations"
+        ],
+        "parallel": false
+      }
+    },
     "build": {
       "executor": "@nrwl/webpack:webpack",
       "outputs": ["{options.outputPath}"],
@@ -13,7 +23,8 @@
         "outputPath": "dist/apps/microservices/integrations",
         "main": "apps/microservices/integrations/src/main.ts",
         "tsConfig": "apps/microservices/integrations/tsconfig.app.json",
-        "assets": ["apps/microservices/integrations/src/assets"]
+        "assets": ["apps/microservices/integrations/src/assets"],
+        "generatePackageJson": true
       },
       "configurations": {
         "production": {

@@ -4,6 +4,16 @@
   "sourceRoot": "apps/web",
   "projectType": "application",
   "targets": {
+    "deploy": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "nx build web",
+          "docker build -f ./apps/web/Dockerfile . -t web"
+        ],
+        "parallel": false
+      }
+    },
     "build": {
       "executor": "@nrwl/next:build",
       "outputs": ["{options.outputPath}"],

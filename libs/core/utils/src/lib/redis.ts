@@ -3,7 +3,7 @@ import { User } from '@prisma/client';
 import { v4 as uuidv4 } from 'uuid';
 import { b64Decode, b64Encode } from './auth';
 
-export const redis = new Redis();
+export const redis = new Redis(6379, 'redis');
 
 export const getSessionIdFromUserData = async (userData: User) => {
   const sessionID = uuidv4();
