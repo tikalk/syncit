@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: calendars-service
+  labels:
+    app: calendars-service
+    group: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: calendars-service
+  template:
+    metadata:
+      labels:
+        app: calendars-service
+        group: backend
+    spec:
+      containers:
+        - name: calendars-service
+          image: mavishay/syncit-calendars-service:latest
+          ports:
+            - containerPort: 3334
+          envFrom:
+            - configMapRef:
+                name: postgres-config
+          env:
+            - name: DB_SERVER
+              value: postgres
+          resources:
+            limits:
+              memory: "256Mi"
+              cpu: "500m"

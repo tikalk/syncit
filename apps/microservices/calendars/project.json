@@ -9,7 +9,8 @@
       "options": {
         "commands": [
           "nx build microservices-calendars",
-          "docker build -f ./apps/microservices/calendars/Dockerfile . -t calendars"
+          "docker build -f ./apps/microservices/calendars/Dockerfile . -t mavishay/syncit-calendars-service:latest",
+          "docker push mavishay/syncit-calendars-service:latest"
         ],
         "parallel": false
       }

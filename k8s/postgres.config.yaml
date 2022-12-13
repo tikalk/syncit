@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgres-config
+  labels:
+    group: db
+data:
+  POSTGRES_DB: syncit
+  POSTGRES_USER: postgres
+  POSTGRES_PASSWORD: postgres

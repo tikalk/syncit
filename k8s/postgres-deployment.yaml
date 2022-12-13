@@ -1,0 +1,38 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres
+  labels:
+    app: postgres
+    group: db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres
+  template:
+    metadata:
+      labels:
+        app: postgres
+        type: db
+    spec:
+      volumes:                         # indicates which PVC are available for this Deployment
+        - name: postgres-storage
+          persistentVolumeClaim:
+            claimName: postgres-persistent-volume-claim
+      containers:
+        - name: postgres
+          image: postgres:9.6-alpine
+          ports:
+            - containerPort: 5432
+          envFrom:
+            - configMapRef:
+                name: postgres-config
+          volumeMounts:                 # indicates which Volume (from spec.template.spec.volumes) should be used
+            - name: postgres-storage                # name of the Volume
+              mountPath: /var/lib/postgresql/data   # path inside the container
+          resources:
+            limits:
+              memory: "256Mi"
+              cpu: "500m"

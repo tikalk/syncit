@@ -9,7 +9,8 @@
       "options": {
         "commands": [
           "nx build microservices-auth",
-          "docker build -f ./apps/microservices/auth/Dockerfile . -t auth"
+          "docker build -f ./apps/microservices/auth/Dockerfile . -t mavishay/syncit-auth-service:latest",
+          "docker push mavishay/syncit-auth-service:latest"
         ],
         "parallel": false
       }

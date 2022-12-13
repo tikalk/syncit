@@ -9,7 +9,8 @@
       "options": {
         "commands": [
           "nx build microservices-integrations",
-          "docker build -f ./apps/microservices/integrations/Dockerfile . -t integrations"
+          "docker build -f ./apps/microservices/integrations/Dockerfile . -t mavishay/syncit-integrations-service:latest",
+          "docker push mavishay/syncit-integrations-service:latest"
         ],
         "parallel": false
       }

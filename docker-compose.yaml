@@ -1,13 +1,13 @@
 version: "3.6"
 services:
   web:
-    image: web
+    image: mavishay/syncit-web-service:latest
     environment:
       - apiPath=http://api:3333
     ports:
       - '8080:4200'
   auth-service:
-    image: auth
+    image: mavishay/syncit-auth-service:latest
     ports:
       - '3334:3334'
     depends_on:
@@ -17,7 +17,7 @@ services:
       - "postgres:database"
       - "redis:redis"
   calendars-service:
-    image: calendars
+    image: mavishay/syncit-calendars-service:latest
     ports:
       - '3335:3335'
     depends_on:
@@ -27,7 +27,7 @@ services:
       - "postgres:database"
       - "redis:redis"
   integrations-service:
-    image: integrations
+    image: mavishay/syncit-integrations-service:latest
     ports:
       - '3336:3336'
     depends_on:
