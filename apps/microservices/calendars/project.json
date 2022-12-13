@@ -4,6 +4,17 @@
   "sourceRoot": "apps/microservices/calendars/src",
   "projectType": "application",
   "targets": {
+    "deploy": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "nx build microservices-calendars",
+          "docker build -f ./apps/microservices/calendars/Dockerfile . -t mavishay/syncit-calendars-service:latest",
+          "docker push mavishay/syncit-calendars-service:latest"
+        ],
+        "parallel": false
+      }
+    },
     "build": {
       "executor": "@nrwl/webpack:webpack",
       "outputs": ["{options.outputPath}"],
@@ -13,7 +24,8 @@
         "outputPath": "dist/apps/microservices/calendars",
         "main": "apps/microservices/calendars/src/main.ts",
         "tsConfig": "apps/microservices/calendars/tsconfig.app.json",
-        "assets": ["apps/microservices/calendars/src/assets"]
+        "assets": ["apps/microservices/calendars/src/assets"],
+        "generatePackageJson": true
       },
       "configurations": {
         "production": {

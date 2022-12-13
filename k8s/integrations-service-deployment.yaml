@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: integrations-service
+  labels:
+    app: integrations-service
+    group: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: integrations-service
+  template:
+    metadata:
+      labels:
+        app: integrations-service
+        group: backend
+    spec:
+      containers:
+        - name: integrations-service
+          image: mavishay/syncit-integrations-service:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3336
+          envFrom:
+            - configMapRef:
+                name: syncit-config
+          env:
+            - name: DB_SERVER
+              value: postgres
+          resources:
+            limits:
+              memory: "256Mi"
+              cpu: "500m"

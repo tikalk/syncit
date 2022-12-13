@@ -1,0 +1,35 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis
+  labels:
+    app: redis
+    group: db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redis
+  template:
+    metadata:
+      labels:
+        app: redis
+        type: db
+    spec:
+      volumes:                         # indicates which PVC are available for this Deployment
+        - name: redis-storage
+          persistentVolumeClaim:
+            claimName: redis-persistent-volume-claim
+      containers:
+        - name: redis
+          image: redis:alpine
+          ports:
+            - containerPort: 6379
+          volumeMounts:                 # indicates which Volume (from spec.template.spec.volumes) should be used
+            - name: redis-storage                # name of the Volume
+              mountPath: /bitnami/redis/data   # path inside the container
+          resources:
+            limits:
+              memory: "256Mi"
+              cpu: "500m"

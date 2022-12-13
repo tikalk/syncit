@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: adminer
+  labels:
+    app: adminer
+    group: db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: adminer    # indicates which Pods (with which labeles) need be handled by this Deployment
+  template:
+    metadata:         # indicates the metadata that will be added to each Pod
+      labels:
+        app: adminer
+        group: db
+    spec:
+      containers:     # defines a running container inside the Pod
+        - name: adminer
+          image: adminer:4.7.6-standalone
+          ports:
+            - containerPort: 8080   # which port of the container is exposed to the Pod
+          env:
+            - name: ADMINER_DESIGN
+              value: pepa-linha
+            - name: ADMINER_DEFAULT_SERVER
+              value: postgres
+          resources:
+            limits:
+              memory: "256Mi"
+              cpu: "500m"

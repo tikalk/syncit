@@ -4,6 +4,17 @@
   "sourceRoot": "apps/microservices/auth/src",
   "projectType": "application",
   "targets": {
+    "deploy": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "nx build microservices-auth",
+          "docker build -f ./apps/microservices/auth/Dockerfile . -t mavishay/syncit-auth-service:latest",
+          "docker push mavishay/syncit-auth-service:latest"
+        ],
+        "parallel": false
+      }
+    },
     "build": {
       "executor": "@nrwl/webpack:webpack",
       "outputs": ["{options.outputPath}"],

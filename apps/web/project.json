@@ -4,9 +4,22 @@
   "sourceRoot": "apps/web",
   "projectType": "application",
   "targets": {
+    "deploy": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "nx build web",
+          "docker build -f ./apps/web/Dockerfile . -t mavishay/syncit-web-service:latest",
+          "docker push mavishay/syncit-web-service:latest"
+        ],
+        "parallel": false
+      }
+    },
     "build": {
       "executor": "@nrwl/next:build",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "defaultConfiguration": "production",
       "options": {
         "root": "apps/web",
@@ -45,7 +58,9 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/apps/web"],
+      "outputs": [
+        "{workspaceRoot}/coverage/apps/web"
+      ],
       "options": {
         "jestConfig": "apps/web/jest.config.ts",
         "passWithNoTests": true
@@ -53,11 +68,15 @@
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",
-      "outputs": ["{options.outputFile}"],
+      "outputs": [
+        "{options.outputFile}"
+      ],
       "options": {
         "outputFile": "reports/lint-results/web.json",
         "format": "json",
-        "lintFilePatterns": ["apps/web/**/*.{ts,tsx,js,jsx}"]
+        "lintFilePatterns": [
+          "apps/web/**/*.{ts,tsx,js,jsx}"
+        ]
       }
     }
   },

@@ -281,7 +281,7 @@ export class GoogleCalendarService {
       calendarId: externalId,
       resource: {
         id: v4(),
-        address: `${process.env['BE_PUBLIC_URL']}/api/calendars/callback/${calId}`,
+        address: `${process.env['NEXT_PUBLIC_WEBAPP_URL']}/api/calendars/callback/${calId}`,
         type: 'web_hook',
         params: {
           ttl: '30000',

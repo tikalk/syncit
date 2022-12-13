@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-service
+  labels:
+    app: web-service
+    group: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web-service
+  template:
+    metadata:
+      labels:
+        app: web-service
+        group: frontend
+    spec:
+      containers:
+        - name: web-service
+          image: mavishay/syncit-web-service:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 4200
+          envFrom:
+            - configMapRef:
+                name: syncit-config
+          env:
+            - name: DB_SERVER
+              value: postgres
+          resources:
+            limits:
+              memory: "256Mi"
+              cpu: "500m"
