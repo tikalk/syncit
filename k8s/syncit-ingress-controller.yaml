@@ -6,6 +6,16 @@ metadata:
     kubernetes.io/ingress.class: nginx
 spec:
   rules:
+    - host: adminer.k8s.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: adminer
+                port:
+                  number: 8080
     - host: syncit.k8s.com
       http:
         paths:

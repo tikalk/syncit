@@ -19,11 +19,12 @@ spec:
       containers:
         - name: web-service
           image: mavishay/syncit-web-service:latest
+          imagePullPolicy: Always
           ports:
             - containerPort: 4200
           envFrom:
             - configMapRef:
-                name: postgres-config
+                name: syncit-config
           env:
             - name: DB_SERVER
               value: postgres

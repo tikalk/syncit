@@ -9,9 +9,7 @@ export type IntegrationOAuthCallbackState = {
   returnTo: string;
 };
 
-export const WEBAPP_URL =
-  process.env['NEXT_PUBLIC_WEBAPP_URL'] ||
-  `https://${process.env['VERCEL_URL']}`;
+export const WEBAPP_URL = process.env['NEXT_PUBLIC_WEBAPP_URL'];
 
 const scopes = [
   'https://www.googleapis.com/auth/calendar.readonly',

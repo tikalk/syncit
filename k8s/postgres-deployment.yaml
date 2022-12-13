@@ -28,7 +28,7 @@ spec:
             - containerPort: 5432
           envFrom:
             - configMapRef:
-                name: postgres-config
+                name: syncit-config
           volumeMounts:                 # indicates which Volume (from spec.template.spec.volumes) should be used
             - name: postgres-storage                # name of the Volume
               mountPath: /var/lib/postgresql/data   # path inside the container

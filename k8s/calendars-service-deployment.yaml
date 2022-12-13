@@ -19,11 +19,12 @@ spec:
       containers:
         - name: calendars-service
           image: mavishay/syncit-calendars-service:latest
+          imagePullPolicy: Always
           ports:
             - containerPort: 3334
           envFrom:
             - configMapRef:
-                name: postgres-config
+                name: syncit-config
           env:
             - name: DB_SERVER
               value: postgres
