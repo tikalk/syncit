@@ -1,23 +1,28 @@
 {
   "name": "syncit3.0",
   "private": true,
+  "workspaces": [
+    "apps/**/*",
+    "packages/**/*"
+  ],
   "scripts": {
     "build": "turbo build",
     "dev": "turbo dev",
+    "env-check": "dotenv-checker -s .env.example -e .env",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "lint": "turbo lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "prepare": "husky && yarn env-check",
+    "test": "turbo test"
   },
   "devDependencies": {
+    "dotenv-checker": "^1.1.7",
+    "husky": "^9.1.6",
     "prettier": "^3.2.5",
     "turbo": "^2.1.3",
     "typescript": "^5.4.5"
   },
+  "packageManager": "yarn@1.22.22",
   "engines": {
     "node": ">=18"
-  },
-  "packageManager": "yarn@1.22.22",
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ]
+  }
 }
