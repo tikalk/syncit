@@ -1,0 +1,1239 @@
+{
+  "version": "6.0",
+  "nxVersion": "20.0.1",
+  "pathMappings": {
+    "@syncit2.0/core/components": [
+      "libs/core/components/src/index.ts"
+    ],
+    "@syncit2.0/core/hooks": [
+      "libs/core/hooks/src/index.ts"
+    ],
+    "@syncit2.0/core/nest-lib": [
+      "libs/core/nest-lib/src/index.ts"
+    ],
+    "@syncit2.0/core/store": [
+      "libs/core/store/src/index.ts"
+    ],
+    "@syncit2.0/core/utils": [
+      "libs/core/utils/src/index.ts"
+    ],
+    "@syncit2.0/integrations": [
+      "libs/integrations/src/index.ts"
+    ],
+    "@syncit2.0/models": [
+      "libs/models/src/index.ts"
+    ]
+  },
+  "nxJsonPlugins": [],
+  "fileMap": {
+    "nonProjectFiles": [
+      {
+        "file": ".editorconfig",
+        "hash": "5443105041930014821"
+      },
+      {
+        "file": ".env.example",
+        "hash": "1013764039290583953"
+      },
+      {
+        "file": ".eslintrc.json",
+        "hash": "18045134502320329116"
+      },
+      {
+        "file": ".github/ISSUE_TEMPLATE/bug_report.md",
+        "hash": "7656515721289602375"
+      },
+      {
+        "file": ".github/ISSUE_TEMPLATE/config.yml",
+        "hash": "5415279360409284846"
+      },
+      {
+        "file": ".github/ISSUE_TEMPLATE/feature_request.md",
+        "hash": "8999482320603711228"
+      },
+      {
+        "file": ".github/PULL_REQUEST_TEMPLATE.md",
+        "hash": "13477620501571502832"
+      },
+      {
+        "file": ".github/dependabot.yml",
+        "hash": "16823707678868197118"
+      },
+      {
+        "file": ".github/workflows-to-check/check-types.yml",
+        "hash": "1993558257072445519"
+      },
+      {
+        "file": ".github/workflows-to-check/cron-bookingReminder.yml",
+        "hash": "882331200553119684"
+      },
+      {
+        "file": ".github/workflows-to-check/cron-downgradeUsers.yml",
+        "hash": "4910067089863505286"
+      },
+      {
+        "file": ".github/workflows-to-check/crowdin.yml",
+        "hash": "8025381831079556274"
+      },
+      {
+        "file": ".github/workflows-to-check/e2e.yml",
+        "hash": "5093530619245092253"
+      },
+      {
+        "file": ".github/workflows-to-check/storybook.yaml",
+        "hash": "1323178380399295722"
+      },
+      {
+        "file": ".github/workflows-to-check/submodule-sync.yml",
+        "hash": "2450405670998787639"
+      },
+      {
+        "file": ".github/workflows-to-check/unit-test.yml",
+        "hash": "4429237219020274973"
+      },
+      {
+        "file": ".github/workflows/lint.yml",
+        "hash": "6721972635020512640"
+      },
+      {
+        "file": ".gitignore",
+        "hash": "197015514250801168"
+      },
+      {
+        "file": ".husky/pre-commit",
+        "hash": "1038190505859968275"
+      },
+      {
+        "file": ".prettierignore",
+        "hash": "17733650430415207254"
+      },
+      {
+        "file": ".prettierrc",
+        "hash": "16267754514737964994"
+      },
+      {
+        "file": ".swm/auth-guard.xim2x.sw.md",
+        "hash": "5821551252617804898"
+      },
+      {
+        "file": ".swm/auth-microservice.nd95a.sw.md",
+        "hash": "10423514406688549524"
+      },
+      {
+        "file": ".swm/project-architecture.ssd3r.sw.md",
+        "hash": "2697505557906022094"
+      },
+      {
+        "file": ".swm/redis-functions.tk1hl.sw.md",
+        "hash": "13422210184115197285"
+      },
+      {
+        "file": ".swm/swimm.json",
+        "hash": "1057474953961768014"
+      },
+      {
+        "file": ".swm/user-middleware.soekm.sw.md",
+        "hash": "116179081348149224"
+      },
+      {
+        "file": ".vscode/extensions.json",
+        "hash": "235626400633494639"
+      },
+      {
+        "file": "LICENSE.md",
+        "hash": "9604675966631799471"
+      },
+      {
+        "file": "README.md",
+        "hash": "18230256426634633624"
+      },
+      {
+        "file": "apps/.gitkeep",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": "babel.config.json",
+        "hash": "5546405625092116747"
+      },
+      {
+        "file": "docker-compose.yaml",
+        "hash": "13826442344035750493"
+      },
+      {
+        "file": "jest.config.ts",
+        "hash": "2950215254536237782"
+      },
+      {
+        "file": "jest.preset.js",
+        "hash": "2772139696069860212"
+      },
+      {
+        "file": "k8s/adminer-deployment.yaml",
+        "hash": "4758155219757431048"
+      },
+      {
+        "file": "k8s/adminer-svc.yaml",
+        "hash": "14778899489695642635"
+      },
+      {
+        "file": "k8s/auth-service-deployment.yaml",
+        "hash": "1819643872293640342"
+      },
+      {
+        "file": "k8s/auth-service-svc.yaml",
+        "hash": "4576273397040575155"
+      },
+      {
+        "file": "k8s/calendars-service-deployment.yaml",
+        "hash": "15744903512105919708"
+      },
+      {
+        "file": "k8s/calendars-service-svc.yaml",
+        "hash": "1782664603333810074"
+      },
+      {
+        "file": "k8s/integrations-service-deployment.yaml",
+        "hash": "6051783644439746362"
+      },
+      {
+        "file": "k8s/integrations-service-svc.yaml",
+        "hash": "16689669438729222074"
+      },
+      {
+        "file": "k8s/postgres-deployment.yaml",
+        "hash": "11382646098481826974"
+      },
+      {
+        "file": "k8s/postgres-svc.yaml",
+        "hash": "13154490135399780153"
+      },
+      {
+        "file": "k8s/postgres.pvc.yaml",
+        "hash": "14611875101186201886"
+      },
+      {
+        "file": "k8s/rabbitmq-deployment.yaml",
+        "hash": "16927519083120801732"
+      },
+      {
+        "file": "k8s/rabbitmq-pvc.yaml",
+        "hash": "16812833644553575152"
+      },
+      {
+        "file": "k8s/rabbitmq-svc.yaml",
+        "hash": "12915295795696719386"
+      },
+      {
+        "file": "k8s/redis-deployment.yaml",
+        "hash": "14999471447201987964"
+      },
+      {
+        "file": "k8s/redis-pvc.yaml",
+        "hash": "9235273512176159502"
+      },
+      {
+        "file": "k8s/redis-svc.yaml",
+        "hash": "5690983755359151147"
+      },
+      {
+        "file": "k8s/syncit-ingress-controller.yaml",
+        "hash": "11851596638712818290"
+      },
+      {
+        "file": "k8s/syncit.config.yaml",
+        "hash": "11950777336959974106"
+      },
+      {
+        "file": "k8s/web-service-deployment.yaml",
+        "hash": "4443395218549635239"
+      },
+      {
+        "file": "k8s/web-service-svc.yaml",
+        "hash": "1383845631357175364"
+      },
+      {
+        "file": "libs/.gitkeep",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": "nx.json",
+        "hash": "13485999721351479627"
+      },
+      {
+        "file": "package.json",
+        "hash": "3054463980226716823"
+      },
+      {
+        "file": "tools/generators/.gitkeep",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": "tools/tsconfig.tools.json",
+        "hash": "16088922570277978783"
+      },
+      {
+        "file": "tsconfig.base.json",
+        "hash": "6709179773022722974"
+      },
+      {
+        "file": "types/google_calendar.d.ts",
+        "hash": "8266153487300807724"
+      },
+      {
+        "file": "yarn.lock",
+        "hash": "16315553274626801806"
+      }
+    ],
+    "projectFileMap": {
+      "core-utils": [
+        {
+          "file": "libs/core/utils/.babelrc",
+          "hash": "18238232969178643540"
+        },
+        {
+          "file": "libs/core/utils/.eslintrc.json",
+          "hash": "9703569748258640057"
+        },
+        {
+          "file": "libs/core/utils/README.md",
+          "hash": "17049186525694449440"
+        },
+        {
+          "file": "libs/core/utils/jest.config.ts",
+          "hash": "1548243238566734695"
+        },
+        {
+          "file": "libs/core/utils/package.json",
+          "hash": "2261664643061432497"
+        },
+        {
+          "file": "libs/core/utils/project.json",
+          "hash": "10853252797069059786"
+        },
+        {
+          "file": "libs/core/utils/src/index.ts",
+          "hash": "15412943168822820585"
+        },
+        {
+          "file": "libs/core/utils/src/lib/auth.ts",
+          "hash": "17345968874749020508",
+          "deps": [
+            "npm:bcryptjs",
+            "npm:next",
+            "npm:cookie"
+          ]
+        },
+        {
+          "file": "libs/core/utils/src/lib/core-utils.spec.ts",
+          "hash": "15641040184800593526"
+        },
+        {
+          "file": "libs/core/utils/src/lib/core-utils.ts",
+          "hash": "10924445030614205808"
+        },
+        {
+          "file": "libs/core/utils/src/lib/errorsHandlers.ts",
+          "hash": "3942352423964462274"
+        },
+        {
+          "file": "libs/core/utils/src/lib/events.ts",
+          "hash": "12033364376135820399",
+          "deps": [
+            "npm:short-uuid",
+            "npm:uuid"
+          ]
+        },
+        {
+          "file": "libs/core/utils/src/lib/object.ts",
+          "hash": "5502696039699860616"
+        },
+        {
+          "file": "libs/core/utils/src/lib/redis.ts",
+          "hash": "14147507671290772763",
+          "deps": [
+            "npm:ioredis",
+            "npm:@prisma/client",
+            "npm:uuid"
+          ]
+        },
+        {
+          "file": "libs/core/utils/src/lib/slugify.ts",
+          "hash": "4850514515674396262"
+        },
+        {
+          "file": "libs/core/utils/tsconfig.json",
+          "hash": "1098465750514412960"
+        },
+        {
+          "file": "libs/core/utils/tsconfig.lib.json",
+          "hash": "11548861424851420505"
+        },
+        {
+          "file": "libs/core/utils/tsconfig.spec.json",
+          "hash": "2916358175645510760"
+        }
+      ],
+      "microservices-calendars": [
+        {
+          "file": "apps/microservices/calendars/.eslintrc.json",
+          "hash": "9703569748258640057"
+        },
+        {
+          "file": "apps/microservices/calendars/Dockerfile",
+          "hash": "8332757423545826365"
+        },
+        {
+          "file": "apps/microservices/calendars/jest.config.ts",
+          "hash": "5028361265662835350"
+        },
+        {
+          "file": "apps/microservices/calendars/project.json",
+          "hash": "8204789478428540629"
+        },
+        {
+          "file": "apps/microservices/calendars/src/app/.gitkeep",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "apps/microservices/calendars/src/app/app.controller.spec.ts",
+          "hash": "12504963404593835566",
+          "deps": [
+            "npm:@nestjs/common",
+            "npm:@nestjs/microservices"
+          ]
+        },
+        {
+          "file": "apps/microservices/calendars/src/app/app.controller.ts",
+          "hash": "84047913007228091",
+          "deps": [
+            "npm:@nestjs/common",
+            "npm:@nestjs/microservices"
+          ]
+        },
+        {
+          "file": "apps/microservices/calendars/src/app/app.module.ts",
+          "hash": "6107978301341603442",
+          "deps": [
+            "npm:@nestjs/common",
+            "npm:@nestjs/microservices",
+            "core-nest-lib"
+          ]
+        },
+        {
+          "file": "apps/microservices/calendars/src/app/app.service.ts",
+          "hash": "5842807990884737507",
+          "deps": [
+            "npm:@nestjs/common",
+            "integrations",
+            "npm:@prisma/client"
+          ]
+        },
+        {
+          "file": "apps/microservices/calendars/src/assets/.gitkeep",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "apps/microservices/calendars/src/environments/environment.prod.ts",
+          "hash": "10220522844224226756"
+        },
+        {
+          "file": "apps/microservices/calendars/src/environments/environment.ts",
+          "hash": "1135292433917692033"
+        },
+        {
+          "file": "apps/microservices/calendars/src/main.ts",
+          "hash": "1963040072432154076",
+          "deps": [
+            "npm:@nestjs/common",
+            "npm:@nestjs/core",
+            "core-nest-lib",
+            "npm:cookie-parser"
+          ]
+        },
+        {
+          "file": "apps/microservices/calendars/tsconfig.app.json",
+          "hash": "8945711609970233655"
+        },
+        {
+          "file": "apps/microservices/calendars/tsconfig.json",
+          "hash": "274751474699851624"
+        },
+        {
+          "file": "apps/microservices/calendars/tsconfig.spec.json",
+          "hash": "2916358175645510760"
+        }
+      ],
+      "core-hooks": [
+        {
+          "file": "libs/core/hooks/.babelrc",
+          "hash": "4485277442277499490"
+        },
+        {
+          "file": "libs/core/hooks/.eslintrc.json",
+          "hash": "18250621763427026584"
+        },
+        {
+          "file": "libs/core/hooks/README.md",
+          "hash": "3980790946582903917"
+        },
+        {
+          "file": "libs/core/hooks/jest.config.ts",
+          "hash": "16914968790307056242"
+        },
+        {
+          "file": "libs/core/hooks/project.json",
+          "hash": "13822863072440556419"
+        },
+        {
+          "file": "libs/core/hooks/src/index.ts",
+          "hash": "18369764001397126927"
+        },
+        {
+          "file": "libs/core/hooks/src/lib/core-hooks.spec.tsx",
+          "hash": "14535924326797240759"
+        },
+        {
+          "file": "libs/core/hooks/src/lib/core-hooks.tsx",
+          "hash": "9268019997782266335"
+        },
+        {
+          "file": "libs/core/hooks/src/lib/use-toast/use-toast.ts",
+          "hash": "6323770245901212611",
+          "deps": [
+            "npm:react",
+            "npm:pubsub-js"
+          ]
+        },
+        {
+          "file": "libs/core/hooks/tsconfig.json",
+          "hash": "13244743239125849108"
+        },
+        {
+          "file": "libs/core/hooks/tsconfig.lib.json",
+          "hash": "13882612857090986008"
+        },
+        {
+          "file": "libs/core/hooks/tsconfig.spec.json",
+          "hash": "5581708096422999890"
+        }
+      ],
+      "core-store": [
+        {
+          "file": "libs/core/store/.babelrc",
+          "hash": "4485277442277499490"
+        },
+        {
+          "file": "libs/core/store/.eslintrc.json",
+          "hash": "18250621763427026584"
+        },
+        {
+          "file": "libs/core/store/README.md",
+          "hash": "3237877066654639284"
+        },
+        {
+          "file": "libs/core/store/jest.config.ts",
+          "hash": "9507247273518019411"
+        },
+        {
+          "file": "libs/core/store/project.json",
+          "hash": "4087763025831853924"
+        },
+        {
+          "file": "libs/core/store/src/index.ts",
+          "hash": "8487518327685309696"
+        },
+        {
+          "file": "libs/core/store/src/lib/core-store.spec.tsx",
+          "hash": "10995567869091657137"
+        },
+        {
+          "file": "libs/core/store/src/lib/core-store.tsx",
+          "hash": "12622082432304387070"
+        },
+        {
+          "file": "libs/core/store/src/lib/userDataState.ts",
+          "hash": "9888635180396362617",
+          "deps": [
+            "npm:recoil"
+          ]
+        },
+        {
+          "file": "libs/core/store/tsconfig.json",
+          "hash": "13244743239125849108"
+        },
+        {
+          "file": "libs/core/store/tsconfig.lib.json",
+          "hash": "13882612857090986008"
+        },
+        {
+          "file": "libs/core/store/tsconfig.spec.json",
+          "hash": "5581708096422999890"
+        }
+      ],
+      "web-e2e": [
+        {
+          "file": "apps/web-e2e/.eslintrc.json",
+          "hash": "15523834149352881398"
+        },
+        {
+          "file": "apps/web-e2e/cypress.config.ts",
+          "hash": "212614215478757206"
+        },
+        {
+          "file": "apps/web-e2e/project.json",
+          "hash": "16987740616935750713"
+        },
+        {
+          "file": "apps/web-e2e/src/e2e/app.cy.ts",
+          "hash": "12487085710781836760"
+        },
+        {
+          "file": "apps/web-e2e/src/fixtures/example.json",
+          "hash": "11614668686582597233"
+        },
+        {
+          "file": "apps/web-e2e/src/support/app.po.ts",
+          "hash": "11157016311132186162"
+        },
+        {
+          "file": "apps/web-e2e/src/support/commands.ts",
+          "hash": "7314691991044890572"
+        },
+        {
+          "file": "apps/web-e2e/src/support/e2e.ts",
+          "hash": "3666078656922506009"
+        },
+        {
+          "file": "apps/web-e2e/tsconfig.json",
+          "hash": "1788248097864730386"
+        }
+      ],
+      "microservices-auth": [
+        {
+          "file": "apps/microservices/auth/.eslintrc.json",
+          "hash": "9703569748258640057"
+        },
+        {
+          "file": "apps/microservices/auth/Dockerfile",
+          "hash": "974433282284497112"
+        },
+        {
+          "file": "apps/microservices/auth/jest.config.ts",
+          "hash": "9174612416319585500"
+        },
+        {
+          "file": "apps/microservices/auth/project.json",
+          "hash": "18153409662559376315"
+        },
+        {
+          "file": "apps/microservices/auth/src/Dockerfile",
+          "hash": "2218347568865138570"
+        },
+        {
+          "file": "apps/microservices/auth/src/app/auth.controller.spec.ts",
+          "hash": "9886125231369328876",
+          "deps": [
+            "npm:@nestjs/common",
+            "models",
+            "core-utils"
+          ]
+        },
+        {
+          "file": "apps/microservices/auth/src/app/auth.controller.ts",
+          "hash": "7288901053286458564",
+          "deps": [
+            "npm:@nestjs/common",
+            "npm:@nestjs/swagger"
+          ]
+        },
+        {
+          "file": "apps/microservices/auth/src/app/auth.dto.ts",
+          "hash": "13268310682514738976",
+          "deps": [
+            "npm:@nestjs/swagger"
+          ]
+        },
+        {
+          "file": "apps/microservices/auth/src/app/auth.module.ts",
+          "hash": "6489992613232636643",
+          "deps": [
+            "npm:@nestjs/common",
+            "core-nest-lib"
+          ]
+        },
+        {
+          "file": "apps/microservices/auth/src/app/auth.service.specT.ts",
+          "hash": "18141192386120758832"
+        },
+        {
+          "file": "apps/microservices/auth/src/app/auth.service.ts",
+          "hash": "2132342420600825201",
+          "deps": [
+            "npm:@nestjs/common",
+            "core-utils",
+            "models"
+          ]
+        },
+        {
+          "file": "apps/microservices/auth/src/assets/.gitkeep",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "apps/microservices/auth/src/environments/environment.prod.ts",
+          "hash": "10220522844224226756"
+        },
+        {
+          "file": "apps/microservices/auth/src/environments/environment.ts",
+          "hash": "1135292433917692033"
+        },
+        {
+          "file": "apps/microservices/auth/src/main.ts",
+          "hash": "14728809261948155612",
+          "deps": [
+            "npm:@nestjs/common",
+            "npm:@nestjs/core",
+            "core-nest-lib",
+            "npm:@nestjs/swagger",
+            "npm:cookie-parser"
+          ]
+        },
+        {
+          "file": "apps/microservices/auth/tsconfig.app.json",
+          "hash": "8945711609970233655"
+        },
+        {
+          "file": "apps/microservices/auth/tsconfig.json",
+          "hash": "274751474699851624"
+        },
+        {
+          "file": "apps/microservices/auth/tsconfig.spec.json",
+          "hash": "2916358175645510760"
+        }
+      ],
+      "web": [
+        {
+          "file": "apps/web/.eslintrc.json",
+          "hash": "7494668343931871214"
+        },
+        {
+          "file": "apps/web/Dockerfile",
+          "hash": "10066941380246443370"
+        },
+        {
+          "file": "apps/web/components/Layout.tsx",
+          "hash": "10946431203375122769",
+          "deps": [
+            "npm:react",
+            "npm:next",
+            "core-components",
+            "npm:recoil",
+            "npm:axios",
+            "core-store"
+          ]
+        },
+        {
+          "file": "apps/web/index.d.ts",
+          "hash": "5498222895072842432"
+        },
+        {
+          "file": "apps/web/jest.config.ts",
+          "hash": "14751658931071264505"
+        },
+        {
+          "file": "apps/web/next-env.d.ts",
+          "hash": "5909181270615354023"
+        },
+        {
+          "file": "apps/web/next.config.js",
+          "hash": "14533850306915826133",
+          "deps": [
+            "npm:@nrwl/next"
+          ]
+        },
+        {
+          "file": "apps/web/pages/_app.tsx",
+          "hash": "15289757344772395950",
+          "deps": [
+            "npm:next",
+            "npm:recoil"
+          ]
+        },
+        {
+          "file": "apps/web/pages/auth/login.tsx",
+          "hash": "2227885832927869158",
+          "deps": [
+            "npm:next",
+            "npm:react-hook-form",
+            "npm:axios",
+            "npm:react",
+            "npm:yup",
+            "npm:@hookform/resolvers",
+            "core-hooks"
+          ]
+        },
+        {
+          "file": "apps/web/pages/auth/logout.tsx",
+          "hash": "13520661016107062911",
+          "deps": [
+            "npm:react",
+            "core-components",
+            "npm:axios",
+            "npm:next"
+          ]
+        },
+        {
+          "file": "apps/web/pages/auth/register.tsx",
+          "hash": "11011657743540559266",
+          "deps": [
+            "npm:next",
+            "npm:react-hook-form",
+            "npm:axios",
+            "npm:react",
+            "npm:yup",
+            "npm:@hookform/resolvers",
+            "core-hooks"
+          ]
+        },
+        {
+          "file": "apps/web/pages/index.module.css",
+          "hash": "4786619528779355986"
+        },
+        {
+          "file": "apps/web/pages/index.tsx",
+          "hash": "18416661663131024527",
+          "deps": [
+            "npm:next",
+            "npm:react",
+            "npm:axios",
+            "core-components"
+          ]
+        },
+        {
+          "file": "apps/web/pages/styles.css",
+          "hash": "11248148012246430088"
+        },
+        {
+          "file": "apps/web/postcss.config.js",
+          "hash": "13598591179375906364"
+        },
+        {
+          "file": "apps/web/project.json",
+          "hash": "653152995263376344"
+        },
+        {
+          "file": "apps/web/proxy.conf.json",
+          "hash": "16854649438842069281"
+        },
+        {
+          "file": "apps/web/public/.gitkeep",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "apps/web/public/android-chrome-192x192.png",
+          "hash": "13067362340904873549"
+        },
+        {
+          "file": "apps/web/public/android-chrome-512x512.png",
+          "hash": "3760941507006805644"
+        },
+        {
+          "file": "apps/web/public/apple-touch-icon.png",
+          "hash": "7181523611209658116"
+        },
+        {
+          "file": "apps/web/public/cal-sync-logo.png",
+          "hash": "17619646234736645013"
+        },
+        {
+          "file": "apps/web/public/favicon-16x16.png",
+          "hash": "8488057288955270769"
+        },
+        {
+          "file": "apps/web/public/favicon-32x32.png",
+          "hash": "13422105503257380089"
+        },
+        {
+          "file": "apps/web/public/favicon.ico",
+          "hash": "7565548700175767745"
+        },
+        {
+          "file": "apps/web/public/site.webmanifest",
+          "hash": "2300979683925575323"
+        },
+        {
+          "file": "apps/web/sections/left-bar/left-bar.tsx",
+          "hash": "3591329938253488109",
+          "deps": [
+            "npm:next",
+            "npm:@heroicons/react",
+            "npm:recoil",
+            "core-store"
+          ]
+        },
+        {
+          "file": "apps/web/tailwind.config.js",
+          "hash": "15105369247732214551",
+          "deps": [
+            "npm:@nrwl/react",
+            "npm:daisyui"
+          ]
+        },
+        {
+          "file": "apps/web/tsconfig.json",
+          "hash": "4549117079513823106"
+        },
+        {
+          "file": "apps/web/tsconfig.spec.json",
+          "hash": "6932660931697717727"
+        }
+      ],
+      "microservices-integrations": [
+        {
+          "file": "apps/microservices/integrations/.eslintrc.json",
+          "hash": "9703569748258640057"
+        },
+        {
+          "file": "apps/microservices/integrations/Dockerfile",
+          "hash": "9924787977488303095"
+        },
+        {
+          "file": "apps/microservices/integrations/jest.config.ts",
+          "hash": "14431050658056803195"
+        },
+        {
+          "file": "apps/microservices/integrations/project.json",
+          "hash": "2605836191551487178"
+        },
+        {
+          "file": "apps/microservices/integrations/src/app/.gitkeep",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "apps/microservices/integrations/src/app/app.controller.ts",
+          "hash": "17632876461910144670",
+          "deps": [
+            "npm:@nestjs/common",
+            "integrations",
+            "npm:@prisma/client",
+            "core-utils"
+          ]
+        },
+        {
+          "file": "apps/microservices/integrations/src/app/app.module.ts",
+          "hash": "13327905564971554330",
+          "deps": [
+            "npm:@nestjs/common"
+          ]
+        },
+        {
+          "file": "apps/microservices/integrations/src/assets/.gitkeep",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "apps/microservices/integrations/src/environments/environment.prod.ts",
+          "hash": "10220522844224226756"
+        },
+        {
+          "file": "apps/microservices/integrations/src/environments/environment.ts",
+          "hash": "1135292433917692033"
+        },
+        {
+          "file": "apps/microservices/integrations/src/main.ts",
+          "hash": "6386636754809632365",
+          "deps": [
+            "npm:@nestjs/common",
+            "npm:@nestjs/core",
+            "npm:cookie-parser"
+          ]
+        },
+        {
+          "file": "apps/microservices/integrations/tsconfig.app.json",
+          "hash": "8945711609970233655"
+        },
+        {
+          "file": "apps/microservices/integrations/tsconfig.json",
+          "hash": "274751474699851624"
+        },
+        {
+          "file": "apps/microservices/integrations/tsconfig.spec.json",
+          "hash": "2916358175645510760"
+        }
+      ],
+      "core-components": [
+        {
+          "file": "libs/core/components/.babelrc",
+          "hash": "4485277442277499490"
+        },
+        {
+          "file": "libs/core/components/.eslintrc.json",
+          "hash": "18250621763427026584"
+        },
+        {
+          "file": "libs/core/components/README.md",
+          "hash": "13072616623737947399"
+        },
+        {
+          "file": "libs/core/components/jest.config.ts",
+          "hash": "310592457119067307"
+        },
+        {
+          "file": "libs/core/components/project.json",
+          "hash": "9362097427027196599"
+        },
+        {
+          "file": "libs/core/components/src/assets/icons/google_calendar.tsx",
+          "hash": "1558756669693404484",
+          "deps": [
+            "npm:react"
+          ]
+        },
+        {
+          "file": "libs/core/components/src/assets/inegrations/google_calendar.svg",
+          "hash": "9222376125588737640"
+        },
+        {
+          "file": "libs/core/components/src/index.ts",
+          "hash": "17275120518033517156"
+        },
+        {
+          "file": "libs/core/components/src/lib/auth-guard/authGuard.tsx",
+          "hash": "13901136129517789037",
+          "deps": [
+            "npm:react",
+            "npm:next",
+            "npm:axios",
+            "core-store",
+            "npm:recoil"
+          ]
+        },
+        {
+          "file": "libs/core/components/src/lib/core-components.spec.tsx",
+          "hash": "6698357628716757712"
+        },
+        {
+          "file": "libs/core/components/src/lib/core-components.tsx",
+          "hash": "7955184488329489977"
+        },
+        {
+          "file": "libs/core/components/src/lib/icon/icon.tsx",
+          "hash": "10151802085507465354",
+          "deps": [
+            "npm:react"
+          ]
+        },
+        {
+          "file": "libs/core/components/src/lib/loader/loader.tsx",
+          "hash": "14498014635514221243",
+          "deps": [
+            "npm:react"
+          ]
+        },
+        {
+          "file": "libs/core/components/src/lib/toast/toast.tsx",
+          "hash": "5320760700342044313",
+          "deps": [
+            "npm:react",
+            "npm:pubsub-js"
+          ]
+        },
+        {
+          "file": "libs/core/components/tsconfig.json",
+          "hash": "13244743239125849108"
+        },
+        {
+          "file": "libs/core/components/tsconfig.lib.json",
+          "hash": "13882612857090986008"
+        },
+        {
+          "file": "libs/core/components/tsconfig.spec.json",
+          "hash": "5581708096422999890"
+        }
+      ],
+      "models": [
+        {
+          "file": "libs/models/.babelrc",
+          "hash": "18238232969178643540"
+        },
+        {
+          "file": "libs/models/.eslintrc.json",
+          "hash": "13800677001662881425"
+        },
+        {
+          "file": "libs/models/README.md",
+          "hash": "17799089924132604789"
+        },
+        {
+          "file": "libs/models/jest.config.ts",
+          "hash": "13647444672826698655"
+        },
+        {
+          "file": "libs/models/package.json",
+          "hash": "6702951567228528482"
+        },
+        {
+          "file": "libs/models/project.json",
+          "hash": "4647985668729160821"
+        },
+        {
+          "file": "libs/models/src/index.ts",
+          "hash": "4576205770922151236",
+          "deps": [
+            "npm:@prisma/client"
+          ]
+        },
+        {
+          "file": "libs/models/src/prisma/migrations/20220624112524_init/migration.sql",
+          "hash": "15465131439798482329"
+        },
+        {
+          "file": "libs/models/src/prisma/migrations/migration_lock.toml",
+          "hash": "11493296588214560035"
+        },
+        {
+          "file": "libs/models/src/prisma/prisma.schema",
+          "hash": "13761261287813387541"
+        },
+        {
+          "file": "libs/models/src/testing/prismaMock.ts",
+          "hash": "3558771277989335125",
+          "deps": [
+            "npm:@prisma/client"
+          ]
+        },
+        {
+          "file": "libs/models/tsconfig.json",
+          "hash": "5840880287502376438"
+        },
+        {
+          "file": "libs/models/tsconfig.lib.json",
+          "hash": "11146748992678458315"
+        },
+        {
+          "file": "libs/models/tsconfig.spec.json",
+          "hash": "11004397868779370441"
+        }
+      ],
+      "core-nest-lib": [
+        {
+          "file": "libs/core/nest-lib/.babelrc",
+          "hash": "18238232969178643540"
+        },
+        {
+          "file": "libs/core/nest-lib/.eslintrc.json",
+          "hash": "9703569748258640057"
+        },
+        {
+          "file": "libs/core/nest-lib/README.md",
+          "hash": "10938435281205150543"
+        },
+        {
+          "file": "libs/core/nest-lib/jest.config.ts",
+          "hash": "5004337521248399785"
+        },
+        {
+          "file": "libs/core/nest-lib/project.json",
+          "hash": "1128583586133666470"
+        },
+        {
+          "file": "libs/core/nest-lib/src/index.ts",
+          "hash": "4231363667666121181"
+        },
+        {
+          "file": "libs/core/nest-lib/src/lib/auth.guard.ts",
+          "hash": "7162173491383829750",
+          "deps": [
+            "npm:@nestjs/common",
+            "core-utils"
+          ]
+        },
+        {
+          "file": "libs/core/nest-lib/src/lib/user.data.middleware.ts",
+          "hash": "8795891302110070352",
+          "deps": [
+            "npm:express",
+            "npm:@nestjs/common",
+            "core-utils"
+          ]
+        },
+        {
+          "file": "libs/core/nest-lib/tsconfig.json",
+          "hash": "6693614989438379715"
+        },
+        {
+          "file": "libs/core/nest-lib/tsconfig.lib.json",
+          "hash": "1172635962643501866"
+        },
+        {
+          "file": "libs/core/nest-lib/tsconfig.spec.json",
+          "hash": "2916358175645510760"
+        }
+      ],
+      "integrations": [
+        {
+          "file": "libs/integrations/.babelrc",
+          "hash": "18238232969178643540"
+        },
+        {
+          "file": "libs/integrations/.eslintrc.json",
+          "hash": "13800677001662881425"
+        },
+        {
+          "file": "libs/integrations/README.md",
+          "hash": "8582305842543793392"
+        },
+        {
+          "file": "libs/integrations/jest.config.ts",
+          "hash": "6726779399063002388"
+        },
+        {
+          "file": "libs/integrations/package.json",
+          "hash": "4607502596956042615"
+        },
+        {
+          "file": "libs/integrations/project.json",
+          "hash": "11656463037912081642"
+        },
+        {
+          "file": "libs/integrations/src/google-calendar/api.ts",
+          "hash": "12159848164328860710",
+          "deps": [
+            "npm:googleapis",
+            "npm:next",
+            "core-utils",
+            "npm:@prisma/client"
+          ]
+        },
+        {
+          "file": "libs/integrations/src/google-calendar/index.ts",
+          "hash": "1246101512828185954"
+        },
+        {
+          "file": "libs/integrations/src/google-calendar/service.ts",
+          "hash": "11120826068000493723",
+          "deps": [
+            "npm:@prisma/client",
+            "core-utils",
+            "npm:googleapis",
+            "npm:uuid"
+          ]
+        },
+        {
+          "file": "libs/integrations/src/index.ts",
+          "hash": "6099359917382807489"
+        },
+        {
+          "file": "libs/integrations/tsconfig.json",
+          "hash": "5840880287502376438"
+        },
+        {
+          "file": "libs/integrations/tsconfig.lib.json",
+          "hash": "11146748992678458315"
+        },
+        {
+          "file": "libs/integrations/tsconfig.spec.json",
+          "hash": "10595040461224341030"
+        }
+      ]
+    }
+  }
+}

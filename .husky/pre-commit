@@ -1,6 +1,1 @@
-#!/usr/bin/env sh
-. "$(dirname -- "$0")/_/husky.sh"
-
-npx nx affected:test
-npx lint-staged
-npx nx affected:build
+npm test
