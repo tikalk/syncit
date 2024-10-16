@@ -8,7 +8,7 @@
   "scripts": {
     "build": "turbo build",
     "dev": "turbo dev",
-    "env-check": "dotenv-checker -s .env.example -e .env",
+    "env-check": "turbo env-check",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "lint": "turbo lint",
     "prepare": "husky && yarn env-check",

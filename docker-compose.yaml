@@ -1,0 +1,23 @@
+version: "3.6"
+services:
+  postgres:
+    image: postgres:13
+    ports:
+      - "5433:5432"
+    restart: always
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: "syncit"
+      POSTGRES_USER: "syncit"
+      POSTGRES_PASSWORD: "S3cr3tP@s5w0rd"
+      POSTGRES_HOST_AUTH_METHOD: trust
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  db_data:
+
