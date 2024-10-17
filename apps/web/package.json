@@ -1,29 +1,52 @@
 {
-  "name": "web",
+  "name": "my-qwik-empty-starter",
   "version": "0.0.1",
   "private": true,
+  "description": "Blank project with routing included",
+  "type": "module",
   "scripts": {
-    "build": "next build",
-    "dev": "PORT=5173 next dev --turbo",
-    "lint": "next lint",
-    "start": "next start"
+    "build": "qwik build",
+    "build.client": "vite build",
+    "build.preview": "vite build --ssr src/entry.preview.tsx",
+    "build.types": "tsc --incremental --noEmit",
+    "deploy": "echo 'Run \"npm run qwik add\" to install a server adapter'",
+    "dev": "vite --mode ssr",
+    "dev.debug": "node --inspect-brk ./node_modules/vite/bin/vite.js --mode ssr --force",
+    "fmt": "prettier --write .",
+    "fmt.check": "prettier --check .",
+    "lint": "eslint \"src/**/*.ts*\"",
+    "preview": "qwik build preview && vite preview --open",
+    "qwik": "qwik",
+    "start": "vite --open --mode ssr"
   },
-  "dependencies": {
-    "daisyui": "^4.12.13",
-    "next": "14.2.15",
-    "react": "^18",
-    "react-dom": "^18"
-  },
+  "dependencies": {},
   "devDependencies": {
-    "@repo/eslint-config": "*",
-    "@repo/typescript-config": "*",
-    "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
-    "eslint": "^8",
-    "eslint-config-next": "14.2.15",
-    "postcss": "^8",
-    "tailwindcss": "^3.4.1",
-    "typescript": "^5"
-  }
+    "@builder.io/qwik": "^1.9.1",
+    "@builder.io/qwik-city": "^1.9.1",
+    "@modular-forms/qwik": "^0.28.1",
+    "@types/eslint": "8.56.10",
+    "@types/node": "20.14.11",
+    "@typescript-eslint/eslint-plugin": "7.16.1",
+    "@typescript-eslint/parser": "7.16.1",
+    "autoprefixer": "^10.4.19",
+    "daisyui": "^4.12.13",
+    "eslint": "8.57.0",
+    "eslint-plugin-qwik": "^1.9.1",
+    "postcss": "^8.4.39",
+    "prettier": "3.3.3",
+    "prettier-plugin-tailwindcss": "^0.5.4",
+    "tailwindcss": "^3.4.6",
+    "typescript": "5.4.5",
+    "undici": "*",
+    "vite": "5.3.5",
+    "vite-tsconfig-paths": "^4.2.1"
+  },
+  "engines": {
+    "node": "^18.17.0 || ^20.3.0 || >=21.0.0"
+  },
+  "engines-annotation": "Mostly required by sharp which needs a Node-API v9 compatible runtime",
+  "trustedDependencies": [
+    "sharp"
+  ],
+  "trustedDependencies-annotation": "Needed for bun to allow running install scripts"
 }

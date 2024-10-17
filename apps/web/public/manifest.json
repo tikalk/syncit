@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json.schemastore.org/web-manifest-combined.json",
+  "name": "Syncit",
+  "short_name": "Syncit",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#fff",
+  "description": "We make it easy to sync your calendars in real time."
+}
