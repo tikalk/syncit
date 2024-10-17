@@ -18,14 +18,16 @@ model User {
   theme       String?      @default("light")
   credentials Credential[]
   calendars   Calendar[]
+  session     Session?
 
   @@map("users")
 }
 
 model Session {
-  id       String   @id
-  userData String
-  expDate  DateTime
+  id      String   @id
+  user    User?    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId  Int?     @unique
+  expDate DateTime
 
   @@map("sessions")
 }

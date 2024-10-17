@@ -1,14 +1,18 @@
 {
   "name": "@repo/db",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": true,
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "type": "commonjs",
   "scripts": {
+    "build": "tsc",
     "db:generate": "prisma generate",
     "db:push": "prisma db push --skip-generate",
     "env-check": "dotenv-checker -s .env.example -e .env"
   },
   "exports": {
-    ".": "./src/index.ts"
+    ".": "./dist/index.js"
   },
   "dependencies": {
     "@prisma/client": "^5.21.0"
