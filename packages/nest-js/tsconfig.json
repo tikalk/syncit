@@ -1,0 +1,9 @@
+{
+  "include": ["."],
+  "exclude": ["dist", "build", "node_modules"],
+  "compilerOptions": {
+    "declaration": true,
+    "module": "commonjs",
+    "outDir": "./dist"
+  }
+}

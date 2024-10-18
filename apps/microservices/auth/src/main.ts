@@ -3,7 +3,7 @@ import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import cookieParser from 'cookie-parser';
-import { AuthGuard } from './auth.guard';
+import { AuthGuard } from '@repo/nest-js';
 
 async function bootstrap() {
   const app = await NestFactory.create(AuthModule);

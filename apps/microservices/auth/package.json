@@ -42,6 +42,7 @@
     "@nestjs/platform-express": "^10.0.0",
     "@nestjs/swagger": "^7.4.2",
     "@repo/db": "*",
+    "@repo/nest-js": "*",
     "bcryptjs": "^2.4.3",
     "cookie-parser": "^1.4.7",
     "dayjs": "^1.11.13",
