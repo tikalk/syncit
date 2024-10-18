@@ -24,7 +24,12 @@ const RegisterInputSchema = z.object({
 
 @Injectable()
 export class AuthService {
-  async logout(_, res) {
+  async logout(req, res) {
+    if (req.cookies['syncit-session-id']) {
+      await prisma.session.deleteMany({
+        where: { id: req.cookies.sessionID },
+      });
+    }
     res.cookie('syncit-session-id', 0, {
       maxAge: -1,
       path: '/',
@@ -51,7 +56,7 @@ export class AuthService {
       const verified = await verifyPassword(password, existingUser.password);
       if (verified) {
         const sessionID = v6();
-        await prisma.session.delete({ where: { userId: existingUser.id } });
+        await prisma.session.deleteMany({ where: { userId: existingUser.id } });
         await prisma.session.create({
           data: {
             id: sessionID,
@@ -64,7 +69,7 @@ export class AuthService {
           path: '/',
           httpOnly: true,
         });
-        res.status(200).end(res.getHeader('Set-Cookie'));
+        res.status(200).send(existingUser);
         return;
       }
     }
@@ -105,7 +110,7 @@ export class AuthService {
     });
 
     const sessionID = v6();
-    await prisma.session.delete({ where: { userId: newUser.id } });
+    await prisma.session.deleteMany({ where: { userId: newUser.id } });
     await prisma.session.create({
       data: {
         id: sessionID,
@@ -118,7 +123,7 @@ export class AuthService {
       path: '/',
       httpOnly: true,
     });
-    res.status(201).end(res.getHeader('Set-Cookie'));
+    res.status(201).send(newUser);
     return;
   }
 

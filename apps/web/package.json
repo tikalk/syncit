@@ -1,5 +1,5 @@
 {
-  "name": "my-qwik-empty-starter",
+  "name": "web",
   "version": "0.0.1",
   "private": true,
   "description": "Blank project with routing included",
@@ -12,6 +12,7 @@
     "deploy": "echo 'Run \"npm run qwik add\" to install a server adapter'",
     "dev": "vite --mode ssr",
     "dev.debug": "node --inspect-brk ./node_modules/vite/bin/vite.js --mode ssr --force",
+    "env-check": "dotenv-checker -s .env.example -e .env",
     "fmt": "prettier --write .",
     "fmt.check": "prettier --check .",
     "lint": "eslint \"src/**/*.ts*\"",
@@ -19,7 +20,9 @@
     "qwik": "qwik",
     "start": "vite --open --mode ssr"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@repo/db": "*"
+  },
   "devDependencies": {
     "@builder.io/qwik": "^1.9.1",
     "@builder.io/qwik-city": "^1.9.1",

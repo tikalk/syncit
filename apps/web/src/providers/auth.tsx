@@ -8,10 +8,11 @@ import {
     useContext,
     useContextProvider,
     useSignal,
+    useVisibleTask$,
 } from "@builder.io/qwik";
 import {useNavigate} from "@builder.io/qwik-city";
 import {type IToastContext, ToastContext} from "~/providers/toast";
-import {type User} from "@repo/db"
+import {type User} from "@prisma/client"
 
 export interface IAuthContext {
     user: Signal<User | null | undefined>;
@@ -62,9 +63,8 @@ export const AuthProvider = component$(() => {
     const login = $(
         async (data: { email: string; password: string; redirectUri?: string }) => {
             try {
-                console.warn({data});
                 const res = await fetch(
-                    `${import.meta.env.PUBLIC_SERVER_URL}/api/users/login`,
+                    `${import.meta.env.PUBLIC_SERVER_URL}/api/auth/login`,
                     {
                         method: "POST",
                         credentials: "include",
@@ -107,7 +107,7 @@ export const AuthProvider = component$(() => {
     const logout = $(async () => {
         try {
             const res = await fetch(
-                `${import.meta.env.PUBLIC_SERVER_URL}/api/users/logout`,
+                `${import.meta.env.PUBLIC_SERVER_URL}/api/auth/logout`,
                 {
                     method: "POST",
                     credentials: "include",
@@ -146,12 +146,11 @@ export const AuthProvider = component$(() => {
         async (data: {
             email: string;
             password: string;
-            passwordConfirm: string;
             name: string;
         }) => {
             try {
                 const res = await fetch(
-                    `${import.meta.env.PUBLIC_SERVER_URL}/api/users`,
+                    `${import.meta.env.PUBLIC_SERVER_URL}/api/auth/register`,
                     {
                         method: "POST",
                         credentials: "include",
@@ -162,7 +161,6 @@ export const AuthProvider = component$(() => {
                             email: data.email,
                             name: data.name,
                             password: data.password,
-                            passwordConfirm: data.passwordConfirm,
                         }),
                     },
                 );
@@ -342,33 +340,33 @@ export const AuthProvider = component$(() => {
         },
     );
 
-    // // eslint-disable-next-line qwik/no-use-visible-task
-    // useVisibleTask$(async () => {
-    //     try {
-    //         const res = await fetch(
-    //             `${import.meta.env.PUBLIC_SERVER_URL}/api/users/me`,
-    //             {
-    //                 method: "GET",
-    //                 credentials: "include",
-    //                 headers: {
-    //                     "Content-Type": "application/json",
-    //                 },
-    //             },
-    //         );
-    //         if (res.ok) {
-    //             const json = await res.json();
-    //             user.value = json.user || null;
-    //             status.value = json.user ? "loggedIn" : "loggedOut";
-    //         } else {
-    //             status.value = "loggedOut";
-    //             throw new Error("An error occurred while fetching your account.");
-    //         }
-    //     } catch (e) {
-    //         user.value = null;
-    //         status.value = "loggedOut";
-    //         throw new Error("An error occurred while fetching your account.");
-    //     }
-    // });
+    // eslint-disable-next-line qwik/no-use-visible-task
+    useVisibleTask$(async () => {
+        try {
+            const res = await fetch(
+                `${import.meta.env.PUBLIC_SERVER_URL}/api/auth/me`,
+                {
+                    method: "GET",
+                    credentials: "include",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                },
+            );
+            if (res.ok) {
+                const json = await res.json();
+                user.value = json.user || null;
+                status.value = json.user ? "loggedIn" : "loggedOut";
+            } else {
+                status.value = "loggedOut";
+                console.error("An error occurred while fetching your account.");
+            }
+        } catch (e) {
+            user.value = null;
+            status.value = "loggedOut";
+            console.error("An error occurred while fetching your account.");
+        }
+    });
 
     useContextProvider(AuthContext, {
         user,

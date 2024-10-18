@@ -47,6 +47,13 @@ export default defineConfig(({ command, mode }): UserConfig => {
     //     : undefined,
 
     server: {
+      proxy: {
+        '/api/auth': {
+          target: 'http://localhost:3334',
+          changeOrigin: true,
+          secure: false,
+        },
+      },
       headers: {
         // Don't cache the server response in dev mode
         "Cache-Control": "public, max-age=0",

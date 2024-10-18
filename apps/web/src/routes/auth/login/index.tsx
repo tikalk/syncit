@@ -1,9 +1,9 @@
-import {component$, useContext, useVisibleTask$} from "@builder.io/qwik";
-import {Link, routeLoader$, useNavigate} from "@builder.io/qwik-city";
-import {AuthContext, type IAuthContext} from "~/providers/auth";
-import * as v from "valibot";
-import {type InitialValues, useForm, valiForm$} from "@modular-forms/qwik";
-import {type IToastContext, ToastContext} from "~/providers/toast";
+import { component$, useContext, useVisibleTask$ } from '@builder.io/qwik';
+import { Link, routeLoader$, useNavigate } from '@builder.io/qwik-city';
+import { AuthContext, type IAuthContext } from '~/providers/auth';
+import * as v from 'valibot';
+import { type InitialValues, useForm, valiForm$ } from '@modular-forms/qwik';
+import { type IToastContext, ToastContext } from '~/providers/toast';
 
 const LoginSchema = v.object({
     email: v.pipe(
@@ -41,16 +41,21 @@ export default component$(() => {
     });
 
     // eslint-disable-next-line qwik/no-use-visible-task
-    useVisibleTask$(async ({track}) => {
+    useVisibleTask$(async ({ track, cleanup }) => {
         track(status);
-        if (status.value === "loggedIn") {
-            await toast({
-                msg: "You are already logged in.",
-                type: "success",
-                timeout: 5000,
-            });
-            await nav("/");
-        }
+        const timeoutId = setTimeout(async () => {
+            if (status.value === 'loggedIn') {
+                await toast({
+                    msg: 'You are already logged in.',
+                    type: 'success',
+                    timeout: 5000,
+                });
+                await nav('/');
+            }
+        }, 1000);
+        cleanup(() => {
+            clearTimeout(timeoutId);
+        });
     });
 
     return (

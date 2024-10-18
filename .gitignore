@@ -69,3 +69,4 @@ Thumbs.db
 # Next.js
 .next
 reports
+dist
