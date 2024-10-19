@@ -1,81 +1,77 @@
-# Turborepo starter
+# Syncit 2.0 - We make it easy to sync your calendars in real time.
 
-This is an official starter Turborepo.
+<p align="center">
+<a href="https://github.com/tikalk/syncit/stargazers"><img src="https://img.shields.io/github/stars/tikalk/syncit?style=plastic"/></a>
+<a href="https://github.com/tikalk/syncit/issues"><img src="https://img.shields.io/github/issues/tikalk/syncit?style=plastic"/></a>
+<a href="https://github.com/tikalk/syncit/blob/main/LICENSE.md"><img src="https://img.shields.io/github/license/tikalk/syncit?style=plastic"/></a>
+<a href="https://github.com/tikalk/syncit/pulse"><img src="https://img.shields.io/github/commit-activity/m/tikalk/syncit?style=plastic" alt="Commits-per-month"></a>
+<a href="https://github.com/tikalk/syncit/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22"><img src="https://img.shields.io/badge/Help%20Wanted-Contribute-blue?style=plastic"></a>
+</p>
 
-## Using this example
+<div align="center"><img src="https://github.com/tikalk/syncit/blob/main/apps/web/public/cal-sync-logo.png?raw=true"/></div>
 
-Run the following command:
+<div align="center"><h1>This is an Open source project!</h1></div>
 
-```sh
-npx create-turbo@latest
-```
+## Installation
 
-## What's inside?
+1. Run `yarn` in order to install all dependencies
+2. Run `docker-compose up -d` to run all infrastructure.
+3. Update `.env` According the instruction appears there.
+4. Run `prepare:db` in order to setup the DB
+5. Now that everything is setup run `yarn start`
 
-This Turborepo includes the following packages/apps:
+## Integrations
 
-### Apps and Packages
+### Obtaining the Google API Credentials
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+1. Open [Google API Console](https://console.cloud.google.com/apis/dashboard). If you don't have a project in your
+   Google Cloud subscription, you'll need to create one before proceeding further. Under Dashboard pane, select Enable
+   APIS and Services.
+2. In the search box, type calendar and select the Google Calendar API search result.
+3. Enable the selected API.
+4. Next, go to the [OAuth consent screen](https://console.cloud.google.com/apis/credentials/consent) from the side pane.
+   Select the app type (Internal or External) and enter the basic app details on the first page.
+5. In the second page on Scopes, select Add or Remove Scopes. Search for Calendar.event and select the scope with scope
+   value `.../auth/calendar.events`, `.../auth/calendar.readonly` and select Update.
+6. In the third page (Test Users), add the Google account(s) you'll using. Make sure the details are correct on the last
+   page of the wizard and your consent screen will be configured.
+7. Now select [Credentials](https://console.cloud.google.com/apis/credentials) from the side pane and then select Create
+   Credentials. Select the OAuth Client ID option.
+8. Select Web Application as the Application Type.
+9. Under Authorized redirect URI's, select Add URI and then add the
+   URI `<Syncit URL>/api/integrations/googlecalendar/callback` replacing Syncit URL with the URI at which your
+   application runs.
+10. The key will be created and you will be redirected back to the Credentials page. Select the newly generated client
+    ID under OAuth 2.0 Client IDs.
+11. Select Download JSON. Copy the contents of this file and paste the entire JSON string in the .env file as the value
+    for GOOGLE_API_CREDENTIALS key.
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+You will need to complete a few more steps to activate Google Calendar App.
+Make sure to complete section "Obtaining the Google API Credentials". After the do the
+following
 
-### Utilities
+1. Add extra redirect URL `<Syncit URL>/api/auth/callback/google`
+2. Under 'OAuth concent screen', click "PUBLISH APP"
 
-This Turborepo has some additional tools already setup for you:
+## Licence
 
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
+Distributed under the MIT License. See [LICENSE](https://raw.githubusercontent.com/tikalk/syncit/main/LICENSE.md) for
+more information.
 
-### Build
+## Contribute
 
-To build all apps and packages, run the following command:
+Feel free to open us PR on anything you think can help this project. you also can check the
+issues [here](https://github.com/tikalk/syncit/issues) and try to fix them.
+Found some kind of problem [Let us know about it](https://github.com/tikalk/syncit/issues/new/choose)
+> TBD
 
-```
-cd my-turborepo
-pnpm build
-```
+## Built With
+- [TurboRepo](https://nx.dev/)
+- [Qwik](https://qwik.dev/)
+- [NestJS](https://nestjs.com/)
+- [Tailwind](https://tailwindcss.com/)
+- [DaisyUI](https://daisyui.com)
+- [Prisma](https://prisma.io/)
 
-### Develop
 
-To develop all apps and packages, run the following command:
-
-```
-cd my-turborepo
-pnpm dev
-```
-
-### Remote Caching
-
-Turborepo can use a technique known as [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup), then enter the following commands:
-
-```
-cd my-turborepo
-npx turbo login
-```
-
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-```
-npx turbo link
-```
-
-## Useful Links
-
-Learn more about the power of Turborepo:
-
-- [Tasks](https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks)
-- [Caching](https://turbo.build/repo/docs/core-concepts/caching)
-- [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching)
-- [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
-- [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
-- [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
+# Happy coding....
