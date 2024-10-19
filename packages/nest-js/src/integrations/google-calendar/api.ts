@@ -5,6 +5,7 @@ import { configDotenv } from "dotenv";
 import { Request, Response } from "express";
 
 configDotenv();
+
 export type IntegrationOAuthCallbackState = {
   returnTo: string;
 };
