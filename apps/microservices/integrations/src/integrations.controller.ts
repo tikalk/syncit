@@ -1,6 +1,6 @@
 import { Controller, Delete, Get, Param, Req, Res } from '@nestjs/common';
-import * as integrations from './integrations';
 import { prisma } from './prisma';
+import * as integrations from '@repo/nest-js';
 
 @Controller()
 export class IntegrationsController {

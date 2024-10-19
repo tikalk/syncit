@@ -1,10 +1,10 @@
-import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
-import { prisma } from './prisma';
+import { CanActivate, ExecutionContext, Injectable } from "@nestjs/common";
+import { prisma } from "./prisma";
 
 const unProtectedRoutes = [
-  '/api/auth/login',
-  '/api/auth/register',
-  '/api/calendars/callback/:calId',
+  "/api/auth/login",
+  "/api/auth/register",
+  "/api/calendars/callback/:calId",
 ];
 
 @Injectable()
@@ -15,8 +15,8 @@ export class AuthGuard implements CanActivate {
       return true;
     }
 
-    const { user } = await prisma.session.findFirst({
-      where: { id: request.cookies['syncit-session-id'] },
+    const { user } = await prisma.session.findFirstOrThrow({
+      where: { id: request.cookies["syncit-session-id"] },
       include: { user: true },
     });
     return !!user?.id;

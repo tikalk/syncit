@@ -1,9 +1,8 @@
 {
-  "include": ["."],
-  "exclude": ["dist", "build", "node_modules"],
+  "extends": "@repo/configs/tsconfig.base.json",
   "compilerOptions": {
-    "declaration": true,
-    "module": "commonjs",
-    "outDir": "./dist"
-  }
+    "outDir": "dist"
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "dist"]
 }

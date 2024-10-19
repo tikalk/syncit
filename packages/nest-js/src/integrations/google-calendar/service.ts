@@ -1,38 +1,32 @@
-import { Credential } from '@prisma/client';
-import { Auth, google } from 'googleapis';
-import { v4 } from 'uuid';
-import {
-  EventBusyDate,
-  GoogleCalError,
-  IntegrationCalendar,
-  NewCalendarEventType,
-} from './google_calendar';
-import { HttpError } from '@repo/nest-js';
+import { Calendar, Credential } from "@prisma/client";
+import { Auth, google } from "googleapis";
+import { v4 } from "uuid";
+import { HttpError } from "../../errors.handlers";
 
 export class GoogleCalendarService {
-  private url = '';
+  private url = "";
 
-  private integrationName = '';
+  private integrationName = "";
 
   private auth: Promise<{ getToken: () => Promise<Auth.OAuth2Client> }>;
 
-  private client_id = '';
+  private client_id = "";
 
-  private client_secret = '';
+  private client_secret = "";
 
-  private redirect_uri = '';
+  private redirect_uri = "";
 
   constructor(credential: Credential) {
-    this.integrationName = 'google_calendar';
+    this.integrationName = "google_calendar";
     this.auth = this.googleAuth(credential).then((m) => m);
   }
 
-  async listCalendars(): Promise<IntegrationCalendar[]> {
+  async listCalendars() {
     return new Promise(async (resolve, reject) => {
       const auth = await this.auth;
       const myGoogleAuth = await auth.getToken();
       const calendar = google.calendar({
-        version: 'v3',
+        version: "v3",
         auth: myGoogleAuth,
       });
 
@@ -42,9 +36,9 @@ export class GoogleCalendarService {
           resolve(
             cals.data.items?.map((cal) => {
               const calendar: any = {
-                externalId: cal.id ?? 'No id',
+                externalId: cal.id ?? "No id",
                 integration: this.integrationName,
-                name: cal.summary ?? 'No name',
+                name: cal.summary ?? "No name",
                 primary: cal.primary ?? false,
               };
               return calendar;
@@ -53,7 +47,7 @@ export class GoogleCalendarService {
         })
         .catch((err: Error) => {
           console.error(
-            'There was an error contacting google calendar service: ',
+            "There was an error contacting google calendar service: ",
             err,
           );
           reject(err);
@@ -65,7 +59,7 @@ export class GoogleCalendarService {
     const auth = await this.auth;
     const myGoogleAuth = await auth.getToken();
     const calendar = google.calendar({
-      version: 'v3',
+      version: "v3",
       auth: myGoogleAuth,
     });
     try {
@@ -74,7 +68,7 @@ export class GoogleCalendarService {
         updatedMin: new Date(new Date().getTime() - 10000).toISOString(),
         maxResults: 50,
         singleEvents: true,
-        orderBy: 'startTime',
+        orderBy: "startTime",
       });
       return gapiRes;
     } catch (e) {
@@ -83,16 +77,13 @@ export class GoogleCalendarService {
     }
   }
 
-  async createEvent(
-    externalId: string,
-    calEventRaw: any,
-  ): Promise<NewCalendarEventType> {
+  async createEvent(externalId: string, calEventRaw: any) {
     return new Promise(async (resolve, reject) => {
       const auth = await this.auth;
       const myGoogleAuth = await auth.getToken();
 
       const calendar = google.calendar({
-        version: 'v3',
+        version: "v3",
       });
       calendar.events.insert(
         {
@@ -104,22 +95,22 @@ export class GoogleCalendarService {
         (err: any, event: any) => {
           if (err || !event?.data) {
             console.error(
-              'There was an error contacting google calendar service: ',
+              "There was an error contacting google calendar service: ",
               err,
             );
             return reject(err);
           }
 
           return resolve({
-            uid: '',
+            uid: "",
             ...event.data,
-            id: event.data.id || '',
+            id: event.data.id || "",
             additionalInfo: {
-              hangoutLink: event.data.hangoutLink || '',
+              hangoutLink: event.data.hangoutLink || "",
             },
-            type: 'google_calendar',
-            password: '',
-            url: '',
+            type: "google_calendar",
+            password: "",
+            url: "",
           });
         },
       );
@@ -136,7 +127,7 @@ export class GoogleCalendarService {
       const myGoogleAuth = await auth.getToken();
 
       const calendar = google.calendar({
-        version: 'v3',
+        version: "v3",
         auth: myGoogleAuth,
       });
       calendar.events.update(
@@ -145,13 +136,13 @@ export class GoogleCalendarService {
           calendarId: externalId,
           eventId: eventID,
           sendNotifications: true,
-          sendUpdates: 'all',
+          sendUpdates: "all",
           requestBody: calEventRaw,
         },
         (err: any, event: any) => {
           if (err) {
             console.error(
-              'There was an error contacting google calendar service: ',
+              "There was an error contacting google calendar service: ",
               err,
             );
             return reject(err);
@@ -166,7 +157,7 @@ export class GoogleCalendarService {
     const auth = await this.auth;
     const myGoogleAuth = await auth.getToken();
     const calendar = google.calendar({
-      version: 'v3',
+      version: "v3",
       auth: myGoogleAuth,
     });
 
@@ -176,15 +167,15 @@ export class GoogleCalendarService {
         calendarId: externalId,
         eventId: eventID,
         sendNotifications: false,
-        sendUpdates: 'none',
+        sendUpdates: "none",
       },
-      (err: GoogleCalError | null, event) => {
+      (err, event) => {
         if (err) {
           /* 410 is when an event is already deleted on the Google cal before on syncit
           404 is when the event is on a different calendar */
-          if (err.code === 410 || err.code === 404) return true;
+          // if (err.code === 410 || err.code === 404) return true;
           console.error(
-            'There was an error contacting google calendar service: ',
+            "There was an error contacting google calendar service: ",
             err,
           );
           return false;
@@ -204,7 +195,7 @@ export class GoogleCalendarService {
     const auth = await this.auth;
     const myGoogleAuth = await auth.getToken();
     const calendar = google.calendar({
-      version: 'v3',
+      version: "v3",
       auth: myGoogleAuth,
     });
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -213,10 +204,10 @@ export class GoogleCalendarService {
       calendarId: externalId,
       resource: {
         id: v4(),
-        address: `${process.env['NEXT_PUBLIC_WEBAPP_URL']}/api/calendars/callback/${calId}`,
-        type: 'web_hook',
+        address: `${process.env["WEBAPP_URL"]}/api/calendars/callback/${calId}`,
+        type: "web_hook",
         params: {
-          ttl: '30000',
+          ttl: "30000",
         },
       },
     });
@@ -233,7 +224,7 @@ export class GoogleCalendarService {
     const auth = await this.auth;
     const myGoogleAuth = await auth.getToken();
     const calendar = google.calendar({
-      version: 'v3',
+      version: "v3",
       auth: myGoogleAuth,
     });
     await calendar.channels.stop({
@@ -247,19 +238,19 @@ export class GoogleCalendarService {
   async getAvailability(
     dateFrom: string,
     dateTo: string,
-    selectedCalendars: IntegrationCalendar[],
-  ): Promise<EventBusyDate[]> {
+    calendars: Calendar[],
+  ) {
     return new Promise(async (resolve, reject) => {
       const auth = await this.auth;
       const myGoogleAuth = await auth.getToken();
       const calendar = google.calendar({
-        version: 'v3',
+        version: "v3",
         auth: myGoogleAuth,
       });
-      const selectedCalendarIds = selectedCalendars
+      const selectedCalendarIds = calendars
         .filter((e: any) => e.integration === this.integrationName)
         .map((e: any) => e.externalId);
-      if (selectedCalendarIds.length === 0 && selectedCalendars.length > 0) {
+      if (selectedCalendarIds.length === 0 && calendars.length > 0) {
         // Only calendars of other integrations selected
         resolve([]);
         return;
@@ -280,7 +271,7 @@ export class GoogleCalendarService {
               requestBody: {
                 timeMin: dateFrom,
                 timeMax: dateTo,
-                items: calsIds.map((id) => ({ id })),
+                items: calsIds.map((id: string) => ({ id })),
               },
             },
             (err: any, apires: any) => {
@@ -294,8 +285,8 @@ export class GoogleCalendarService {
                   (c: any, i: any) => {
                     i.busy?.forEach((busyTime: any) => {
                       c.push({
-                        start: busyTime.start || '',
-                        end: busyTime.end || '',
+                        start: busyTime.start || "",
+                        end: busyTime.end || "",
                       });
                     });
                     return c;
@@ -309,7 +300,7 @@ export class GoogleCalendarService {
         })
         .catch((err) => {
           console.error(
-            'There was an error contacting google calendar service: ',
+            "There was an error contacting google calendar service: ",
             err,
           );
           reject(err);
@@ -319,27 +310,27 @@ export class GoogleCalendarService {
 
   private googleAuth = async ({ key }: Credential) => {
     const { client_id, client_secret, redirect_uris } = JSON.parse(
-      process.env['GOOGLE_API_CREDENTIALS'] || '',
+      process.env["GOOGLE_API_CREDENTIALS"] || "",
     ).web;
-    if (typeof client_id === 'string') this.client_id = client_id;
-    if (typeof client_secret === 'string') this.client_secret = client_secret;
-    if (typeof redirect_uris === 'object' && Array.isArray(redirect_uris)) {
+    if (typeof client_id === "string") this.client_id = client_id;
+    if (typeof client_secret === "string") this.client_secret = client_secret;
+    if (typeof redirect_uris === "object" && Array.isArray(redirect_uris)) {
       this.redirect_uri = redirect_uris[0] as string;
     }
     if (!this.client_id)
       throw new HttpError({
         statusCode: 400,
-        message: 'Google client_id missing.',
+        message: "Google client_id missing.",
       });
     if (!this.client_secret)
       throw new HttpError({
         statusCode: 400,
-        message: 'Google client_secret missing.',
+        message: "Google client_secret missing.",
       });
     if (!this.redirect_uri)
       throw new HttpError({
         statusCode: 400,
-        message: 'Google redirect_uri missing.',
+        message: "Google redirect_uri missing.",
       });
 
     const myGoogleAuth = new Auth.OAuth2Client(

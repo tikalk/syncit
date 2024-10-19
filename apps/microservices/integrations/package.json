@@ -8,7 +8,6 @@
   "scripts": {
     "build": "nest build",
     "dev": "nest start --watch",
-    "env-check": "dotenv-checker -s .env.example -e .env",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "start": "nest start",
