@@ -6,9 +6,14 @@ import type { IToastContext } from '~/providers/toast';
 import { ToastContext } from '~/providers/toast';
 
 export const useCalendars = routeLoader$(async () => {
-  const res = await fetch(`${import.meta.env.PUBLIC_SERVER_URL}/api/calendars/availableCalendars`);
-  const calendars = await res.json();
-  return calendars.list ?? [] as Calendar[];
+  try {
+    const res = await fetch(`${import.meta.env.PUBLIC_SERVER_URL}/api/calendars/availableCalendars`);
+    const calendars = await res.json();
+    return calendars.list ?? [] as Calendar[];
+  } catch (e) {
+    console.error('retrieving calendars failed', e);
+    return [];
+  }
 });
 
 export const useAuthGoogle = routeAction$(async () => {
@@ -24,9 +29,14 @@ export const useDeleteCredential = routeAction$(async (value) => {
 });
 
 export const useCalendarToggleChange = routeAction$(async (value) => {
-  await fetch(`${import.meta.env.PUBLIC_SERVER_URL}/api/integrations/google_calendar/delete/${value.credId}`,
+  await fetch(`${import.meta.env.PUBLIC_SERVER_URL}/api/calendars/availableCalendars`,
     {
-      method: value.checked ? 'POST' : 'DELETE', body: JSON.stringify({
+      method: value.checked ? 'POST' : 'DELETE',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
         integration: value.integration,
         externalId: value.externalId,
         credId: value.credId,
@@ -117,7 +127,7 @@ export default component$(() => {
                       <input
                         type="checkbox"
                         class="toggle"
-                        defaultChecked={calendar.enabled}
+                        checked={calendar.enabled}
                         onChange$={async (e) =>
                           await calendarToggleChange.submit(
                             {
