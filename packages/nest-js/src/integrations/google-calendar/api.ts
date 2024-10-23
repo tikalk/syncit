@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { google } from 'googleapis';
-import { prisma } from '../../prisma';
-import { configDotenv } from 'dotenv';
-import { Request, Response } from 'express';
-import { GoogleCalendarService } from './service';
+import { google } from "googleapis";
+import { prisma } from "../../prisma";
+import { configDotenv } from "dotenv";
+import { Request, Response } from "express";
+import { GoogleCalendarService } from "./service";
 
 configDotenv();
 
@@ -108,13 +108,13 @@ export const callback = async (req: Request, res: Response) => {
       userId_account: { account: primaryIsExpired, userId: userData.id },
     },
     update: {
-      type: 'google_calendar',
+      type: "google_calendar",
       account: primaryIsExpired,
       key,
       userId: userData.id,
     },
     create: {
-      type: 'google_calendar',
+      type: "google_calendar",
       account: primaryIsExpired,
       key,
       userId: userData.id,
