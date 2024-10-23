@@ -52,7 +52,7 @@ export class CalendarsService {
   }
 
   async availableCalendars(req, res) {
-    const { userData } = req;
+    const { userData } = res.locals;
     const credentials = await prisma.credential.findMany({
       where: {
         userId: userData?.id,
@@ -61,7 +61,7 @@ export class CalendarsService {
     const output = [];
     const promises = [];
     credentials.forEach((cred) => {
-      output.push({ id: cred.id, name: cred.type, type: cred.type });
+      output.push({ id: cred.id, name: cred.account, type: cred.type });
       const googleCalendarService = new GoogleCalendarService(cred);
       promises.push(googleCalendarService.listCalendars());
     });
@@ -72,13 +72,11 @@ export class CalendarsService {
       },
     });
     const selectedCalendarsIds = selectedCalendars.map((cal) => cal.externalId);
-
     list.forEach((accountCalendars, ind) => {
       const mappedList = accountCalendars.map((cal) => ({
         ...cal,
         enabled: selectedCalendarsIds.includes(cal.externalId),
       }));
-
       output[ind].calendars = mappedList;
     });
     res.status(200).json({ list: output });

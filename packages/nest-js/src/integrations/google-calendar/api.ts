@@ -1,8 +1,9 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { google } from "googleapis";
-import { prisma } from "../../prisma";
-import { configDotenv } from "dotenv";
-import { Request, Response } from "express";
+import { google } from 'googleapis';
+import { prisma } from '../../prisma';
+import { configDotenv } from 'dotenv';
+import { Request, Response } from 'express';
+import { GoogleCalendarService } from './service';
 
 configDotenv();
 
@@ -95,17 +96,26 @@ export const callback = async (req: Request, res: Response) => {
     key = token.res?.data;
   }
 
+  // @ts-ignore
+  const googleService = new GoogleCalendarService({ key });
+  const list = await googleService.listCalendars();
+  // @ts-ignore
+  const { externalId: primaryIsExpired } = list.find((cal) => cal.primary);
+
   await prisma.credential.upsert({
+    // @ts-ignore
     where: {
-      userId_type: { type: "google_calendar", userId: userData.id },
+      userId_account: { account: primaryIsExpired, userId: userData.id },
     },
     update: {
-      type: "google_calendar",
+      type: 'google_calendar',
+      account: primaryIsExpired,
       key,
       userId: userData.id,
     },
     create: {
-      type: "google_calendar",
+      type: 'google_calendar',
+      account: primaryIsExpired,
       key,
       userId: userData.id,
     },

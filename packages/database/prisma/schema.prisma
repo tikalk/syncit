@@ -34,13 +34,14 @@ model Session {
 
 model Credential {
   id                Int        @id @default(autoincrement())
+  account           String?
   type              String
   key               Json
   user              User?      @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId            Int?
   selectedCalendars Calendar[]
 
-  @@unique([userId, type])
+  @@unique([userId, account])
   @@map("credentials")
 }
 
