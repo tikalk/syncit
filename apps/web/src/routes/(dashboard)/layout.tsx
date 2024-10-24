@@ -1,5 +1,5 @@
-import { component$, Slot } from "@builder.io/qwik";
-import Sidebar from "~/components/sidebar";
+import { component$, Slot } from '@builder.io/qwik';
+import Sidebar from '~/components/sidebar';
 
 export const Layout = component$(() => {
   return (

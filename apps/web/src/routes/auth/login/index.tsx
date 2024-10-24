@@ -1,9 +1,8 @@
-import { component$, useContext, useVisibleTask$ } from "@builder.io/qwik";
-import { Link, routeLoader$, useNavigate } from "@builder.io/qwik-city";
-import { AuthContext, type IAuthContext } from "~/providers/auth";
-import * as v from "valibot";
-import { type InitialValues, useForm, valiForm$ } from "@modular-forms/qwik";
-import { type IToastContext, ToastContext } from "~/providers/toast";
+import { component$ } from '@builder.io/qwik';
+import { Link, routeLoader$ } from '@builder.io/qwik-city';
+import * as v from 'valibot';
+import { type InitialValues, useForm, valiForm$ } from '@modular-forms/qwik';
+import { useSignIn } from '~/routes/plugin@auth';
 
 const LoginSchema = v.object({
   email: v.pipe(
@@ -30,9 +29,7 @@ export const useFormLoader = routeLoader$<InitialValues<LoginForm>>(
 );
 
 export default component$(() => {
-  const { login, status } = useContext<IAuthContext>(AuthContext);
-  const nav = useNavigate();
-  const { toast } = useContext<IToastContext>(ToastContext);
+  const signIn = useSignIn();
 
   const [loginForm, { Form, Field }] = useForm<LoginForm>({
     loader: useFormLoader(),
@@ -40,26 +37,10 @@ export default component$(() => {
     validateOn: "blur",
   });
 
-  // eslint-disable-next-line qwik/no-use-visible-task
-  useVisibleTask$(async ({ track, cleanup }) => {
-    track(status);
-    const timeoutId = setTimeout(async () => {
-      if (status.value === "loggedIn") {
-        await toast({
-          msg: "You are already logged in.",
-          type: "success",
-          timeout: 5000,
-        });
-        await nav("/");
-      }
-    }, 1000);
-    cleanup(() => {
-      clearTimeout(timeoutId);
-    });
-  });
 
   return (
-    <Form onSubmit$={login} class="md:w-8/12 lg:w-4/12">
+  // @ts-ignore
+    <Form action={signIn} class="md:w-8/12 lg:w-4/12">
       <div class="flex flex-col gap-4">
         <h2 class="text-2xl">Login</h2>
         <Field name="email">
@@ -104,7 +85,7 @@ export default component$(() => {
             </div>
           )}
         </Field>
-        <Link href="/auth/forgot-password" class="btn btn-link self-end">
+        <Link href="/auth/forgot-password/_index" class="btn btn-link self-end">
           Forgot password?
         </Link>
         <button

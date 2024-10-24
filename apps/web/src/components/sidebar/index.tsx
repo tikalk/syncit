@@ -1,7 +1,7 @@
-import { component$ } from "@builder.io/qwik";
-import { Link } from "@builder.io/qwik-city";
-import Image from "~/media/cal-sync-logo.png?jsx";
-import { UserMenu } from "~/components/sidebar/user-menu";
+import { component$ } from '@builder.io/qwik';
+import { Link } from '@builder.io/qwik-city';
+import Image from '~/media/cal-sync-logo.png?jsx';
+import { UserMenu } from '~/components/sidebar/user-menu';
 
 export const Index = component$(() => {
   return (
