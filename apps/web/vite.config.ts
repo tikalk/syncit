@@ -53,6 +53,16 @@ export default defineConfig(({ command, mode }): UserConfig => {
           changeOrigin: true,
           secure: false,
         },
+        '/api/calendars': {
+          target: 'http://localhost:3335',
+          changeOrigin: true,
+          secure: false,
+        },
+        '/api/integrations': {
+          target: 'http://localhost:3336',
+          changeOrigin: true,
+          secure: false,
+        },
       },
       headers: {
         // Don't cache the server response in dev mode

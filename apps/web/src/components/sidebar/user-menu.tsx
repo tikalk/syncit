@@ -1,34 +1,36 @@
-import { component$, useContext } from "@builder.io/qwik";
-import { Link } from "@builder.io/qwik-city";
-import type { IAuthContext } from "~/providers/auth";
-import { AuthContext } from "~/providers/auth";
+import { component$ } from '@builder.io/qwik';
+import { Link } from '@builder.io/qwik-city';
+import { useSession, useSignOut } from '~/routes/plugin@auth';
 
 export const UserMenu = component$(() => {
-  const { user, logout } = useContext<IAuthContext>(AuthContext);
+  const session = useSession();
+  const signOut = useSignOut();
 
   return (
     <div class="card flex flex-row items-center justify-between bg-base-100 p-4">
       <div class="flex flex-1 items-center gap-4">
-        {user.value?.avatar ? (
+        {session.value?.avatar ? (
           <div class="avatar">
             <div class="w-24 rounded-full">
-              <img src={user.value.avatar} alt={user.value.name ?? "avatar"} />
+              <img src={session.value.avatar} alt={session.value.name ?? 'avatar'} />
             </div>
           </div>
         ) : (
           <div class="avatar placeholder">
             <div class="w-12 rounded-full bg-neutral text-neutral-content">
               <span>
-                {user.value?.name?.[0]}{" "}
-                {user.value?.name?.[user.value.name.indexOf(" ") + 1]}
+                {session.value?.name?.[0]}{' '}
+                {session.value?.name?.[session.value.name.indexOf(' ') + 1]}
               </span>
             </div>
           </div>
         )}
-        <div>{user.value?.name}</div>
+        <div>{session.value?.name}</div>
       </div>
       <div class="tooltip" data-tip="Logout">
-        <Link onClick$={() => logout()} class="btn btn-sm">
+        <Link
+          onClick$={() => signOut.submit({ redirectTo: '/auth/login' })}
+          class="btn btn-sm">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"

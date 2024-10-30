@@ -27,7 +27,7 @@ export class AuthService {
   async logout(req, res) {
     if (req.cookies['syncit-session-id']) {
       await prisma.session.deleteMany({
-        where: { id: req.cookies.sessionID },
+        where: { id: req.cookies['syncit-session-id'] },
       });
     }
     res.cookie('syncit-session-id', 0, {
@@ -35,7 +35,7 @@ export class AuthService {
       path: '/',
       httpOnly: true,
     });
-    res.status(200).end(res.getHeader('Set-Cookie'));
+    res.status(200).send({ success: true });
   }
 
   async login(req, res) {
@@ -129,13 +129,21 @@ export class AuthService {
 
   async me(req, res) {
     if (req.cookies['syncit-session-id']) {
-      const { user } = await prisma.session.findFirst({
-        where: { id: req.cookies.sessionID },
-        include: { user: true },
-      });
-      if (user?.id) {
-        res.status(200).json({ user });
-        return;
+      try {
+        const { userId } = await prisma.session.findFirstOrThrow({
+          where: { id: req.cookies['syncit-session-id'] },
+        });
+        const user = await prisma.user.findFirstOrThrow({
+          where: { id: userId },
+        });
+
+        if (user?.id) {
+          res.status(200).json({ user });
+          return;
+        }
+      } catch (e) {
+        console.error(e);
+        res.status(401).send('unauthorized');
       }
     }
     res.status(401).send('unauthorized');
