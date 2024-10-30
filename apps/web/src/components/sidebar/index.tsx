@@ -1,9 +1,10 @@
-import { component$ } from "@builder.io/qwik";
-import { Link } from "@builder.io/qwik-city";
-import Image from "~/media/cal-sync-logo.png?jsx";
-import { UserMenu } from "~/components/sidebar/user-menu";
+import { component$ } from '@builder.io/qwik';
+import { Link } from '@builder.io/qwik-city';
+import Image from '~/media/cal-sync-logo.png?jsx';
+import { UserMenu } from '~/components/sidebar/user-menu';
 
 export const Index = component$(() => {
+
   return (
     <div class="flex h-screen w-80 flex-col justify-between bg-base-200 p-4">
       <div class="flex w-full flex-col">
@@ -16,7 +17,7 @@ export const Index = component$(() => {
             <h2 class="menu-title">Settings</h2>
             <ul>
               <li>
-                <Link href="/settings/calendar">
+                <Link href="/">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"

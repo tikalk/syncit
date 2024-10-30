@@ -1,9 +1,14 @@
-import { component$, useContext, useVisibleTask$ } from '@builder.io/qwik';
-import { type DocumentHead, routeAction$, routeLoader$, useNavigate } from '@builder.io/qwik-city';
+import { component$ } from '@builder.io/qwik';
+import type { RequestHandler } from '@builder.io/qwik-city';
+import { type DocumentHead, routeAction$, routeLoader$ } from '@builder.io/qwik-city';
 import type { Calendar } from '@repo/db';
-import { AuthContext, type IAuthContext } from '~/providers/auth';
-import type { IToastContext } from '~/providers/toast';
-import { ToastContext } from '~/providers/toast';
+
+export const onRequest: RequestHandler = (event) => {
+  const session = event.sharedMap.get('session');
+  if (!session || new Date(session.expires) < new Date()) {
+    throw event.redirect(302, `/auth/login?redirectTo=${event.url.pathname}`);
+  }
+};
 
 export const useCalendars = routeLoader$(async () => {
   try {
@@ -46,31 +51,12 @@ export const useCalendarToggleChange = routeAction$(async (value) => {
 });
 
 export default component$(() => {
-  const { status } = useContext<IAuthContext>(AuthContext);
-  const { toast } = useContext<IToastContext>(ToastContext);
-  const nav = useNavigate();
+  // const { toast } = useContext<IToastContext>(ToastContext);
+  // const nav = useNavigate();
   const calendars = useCalendars();
   const authGoogle = useAuthGoogle();
   const deleteCredential = useDeleteCredential();
   const calendarToggleChange = useCalendarToggleChange();
-
-  // eslint-disable-next-line qwik/no-use-visible-task
-  useVisibleTask$(async ({ track, cleanup }) => {
-    track(status);
-    const timeoutId = setTimeout(async () => {
-      if (status.value === "loggedOut") {
-        await toast({
-          msg: "You must be logged in to access this page.",
-          type: "success",
-          timeout: 5000,
-        });
-        await nav("/auth/login?redirectUri=/");
-      }
-    }, 500);
-    cleanup(() => {
-      clearTimeout(timeoutId);
-    });
-  });
 
   return (
     <>

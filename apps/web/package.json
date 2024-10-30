@@ -21,7 +21,8 @@
     "start": "vite --open --mode ssr"
   },
   "dependencies": {
-    "@repo/db": "*"
+    "@repo/db": "*",
+    "set-cookie-parser": "^2.7.1"
   },
   "devDependencies": {
     "@builder.io/qwik": "^1.9.1",
@@ -29,6 +30,7 @@
     "@modular-forms/qwik": "^0.28.1",
     "@types/eslint": "8.56.10",
     "@types/node": "20.14.11",
+    "@types/set-cookie-parser": "^2.4.10",
     "@typescript-eslint/eslint-plugin": "7.16.1",
     "@typescript-eslint/parser": "7.16.1",
     "autoprefixer": "^10.4.19",
