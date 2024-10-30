@@ -92,6 +92,45 @@ function AuthQrl() {
       name: z.string().transform((name) => name.trim()),
     }));
 
+  const useUpdate = globalAction$(async (data, req) => {
+      const redirectTo = data.redirectTo ?? '/';
+
+      const res = await fetch(
+        `${import.meta.env.PUBLIC_SERVER_URL}/api/auth/register`,
+        {
+          method: 'POST',
+          credentials: 'include',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            email: data.email,
+            name: data.name,
+            password: data.password,
+          }),
+        },
+      );
+      if (res.ok) {
+        const cookie = res.headers.get('set-cookie');
+        if (cookie) {
+          req.headers.set('set-cookie', cookie);
+          fixCookies(req);
+        }
+        const data = await res.json();
+        req.sharedMap.set('session', data);
+      }
+
+      if (redirectTo) {
+        throw req.redirect(302, redirectTo);
+      }
+    },
+    zod$({
+      redirectTo: z.string().optional(),
+      email: z.string().email().transform((name) => name.trim().toLowerCase()),
+      password: z.string().min(7, 'Password is required'),
+      name: z.string().transform((name) => name.trim()),
+    }));
+
   const useSignOut = globalAction$(
     async ({ redirectTo }, req) => {
       redirectTo ??= '/auth/login';
@@ -149,8 +188,8 @@ function AuthQrl() {
     }
   };
 
-  return { useSignIn, useSignOut, useSession, useSignUp, onRequest };
+  return { useSignIn, useSignOut, useSession, useSignUp, onRequest, useUpdate };
 }
 
 
-export const { onRequest, useSession, useSignIn, useSignOut, useSignUp } = AuthQrl();
+export const { onRequest, useSession, useSignIn, useSignOut, useSignUp, useUpdate } = AuthQrl();
